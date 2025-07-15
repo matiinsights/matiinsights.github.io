@@ -2,63 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mati Insights</title>
   <style>
-    /* make the whole page background white */
-    body {
-      background-color: #fff;
+    html, body {
+      background-color: #ffffff !important;
       margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       font-family: sans-serif;
       color: #333;
-      text-align: center;
     }
-
-    /* logo sizing & centering */
-    #logo {
+    /* Make the logo fill the page more */
+    .logo {
       display: block;
-      margin: 3rem auto;
-      width: 300px;   /* ← adjust as needed */
+      width: 90vw;           /* 90% of viewport width */
+      max-height: 80vh;      /* no more than 80% of viewport height */
       height: auto;
+      margin-bottom: 2rem;
     }
-
-    header {
-      padding: 2rem 1rem;
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
-
-    /* example page content styling */
-    main {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 1rem;
+    p {
+      font-size: 1.125rem;
+      margin-bottom: 2rem;
+      line-height: 1.4;
     }
-
+    .notify-btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #0070f3;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    .notify-btn:hover {
+      background: #0059c1;
+    }
     footer {
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
+      margin-top: 3rem;
+      font-size: 0.875rem;
       color: #666;
     }
   </style>
 </head>
 <body>
+  <!-- logo.png must be in the same folder -->
+  <img src="logo.png" alt="Mati Insights Logo" class="logo">
 
-  <header>
-    <img id="logo" src="logo.png" alt="Mati Insights Logo">
-    <h1>Welcome to Mati Insights</h1>
-    <p>Your go‑to place for data‑driven decisions.</p>
-  </header>
+  <h1>Feasibility with Insights...</h1>
+  <p>       ...coming soon! </p>
+  <a href="#notify" class="notify-btn">Notify Me</a>
 
-  <main>
-    <!-- your landing‑page content goes here -->
-    <p>Coming soon: powerful analytics &amp; dashboards to transform your data into insights.</p>
-    <a href="#" style="display: inline-block; margin-top: 2rem; padding: 0.75rem 1.5rem; background:#007bff; color:white; text-decoration:none; border-radius:4px;">
-      Notify Me
-    </a>
-  </main>
-
-  <footer>
-    &copy; 2025 Mati Insights. All rights reserved.
-  </footer>
-
+  <footer>© 2025 Mati Insights. All rights reserved.</footer>
 </body>
 </html>
+
