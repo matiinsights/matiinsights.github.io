@@ -5,86 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mati Insights</title>
   <style>
-    /* force white background everywhere */
     html, body {
-      background-color: #ffffff !important;
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
+      background: #fff; margin: 0; padding: 0; height: 100%; width: 100%;
     }
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-family: sans-serif;
-      color: #333;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; font-family: sans-serif; color: #333;
     }
-    /* logo sizing */
     .logo {
-      display: block;
-      width: 60vw;        /* 60% of viewport width */
-      max-height: 50vh;   /* no more than 50% of viewport height */
-      height: auto;
-      margin-bottom: 2rem;
+      width: 60vw; max-height: 50vh; height: auto; margin-bottom: 2rem;
     }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    p {
-      font-size: 1rem;
-      margin-bottom: 2rem;
-      line-height: 1.4;
-    }
+    h1 { font-size: 2rem; margin-bottom: 1rem; }
+    p { font-size: 1rem; margin-bottom: 2rem; line-height: 1.4; }
     .sheet-container {
-      width: 90vw;
-      max-width: 800px;
-      margin: 2rem auto;
+      width: 90vw; max-width: 800px; margin: 2rem auto;
     }
     .sheet-container iframe {
-      width: 100%;
-      height: 60vh;
-      border: none;
+      width: 100%; height: 60vh; border: none;
     }
     .notify-btn {
-      padding: 0.75rem 1.5rem;
-      background: #0070f3;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: bold;
-      transition: background 0.2s;
+      padding: .75rem 1.5rem; background: #0070f3;
+      color: #fff; text-decoration: none;
+      border-radius: 4px; font-weight: bold;
+      transition: background .2s;
     }
-    .notify-btn:hover {
-      background: #0059c1;
-    }
+    .notify-btn:hover { background: #0059c1; }
     footer {
-      margin-top: 3rem;
-      font-size: 0.75rem;
-      color: #666;
+      margin-top: 3rem; font-size: .75rem; color: #666;
     }
   </style>
 </head>
 <body>
-  <!-- logo.png must be in the same folder -->
   <img src="logo.png" alt="Mati Insights Logo" class="logo">
-
-  <h1>Feasibility with Insights...</h1>
+  <h1>Insightful Feasibilty...</h1>
   <p>…coming soon!</p>
 
-  <!-- Embedded Google Sheet calculator -->
   <div class="sheet-container">
     <iframe
-      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRuvQbnduCDDJpCuLBVx0Mv_w_072MloXH51ow1HJeWaIiwxFr6FkFz6dsCBl3B5zYGQlcoZ5nCW0We/pubhtml?widget=true&amp;headers=false"
+      src="https://docs.google.com/spreadsheets/d/2PACX-1vRuvQbnduCDDJpCuLBVx0Mv_w_072MloXH51ow1HJeWaIiwxFr6FkFz6dsCBl3B5zYGQlcoZ5nCW0We/edit?usp=sharing&rm=minimal&widget=false&headers=false&chrome=false"
       allowfullscreen>
     </iframe>
   </div>
 
   <a href="#notify" class="notify-btn">Notify Me</a>
-
   <footer>© 2025 Mati Insights. All rights reserved.</footer>
 </body>
 </html>
