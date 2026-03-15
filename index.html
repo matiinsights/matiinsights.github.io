@@ -4,457 +4,376 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mati Insights</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy:       #0D1F35;
-      --navy-mid:   #122030;
-      --navy-card:  #152840;
-      --navy-input: #0D1F35;
-      --blue:       #4A90B8;
-      --blue-light: #7BB8D4;
-      --white:      #F5F8FA;
-      --muted:      #7A90A8;
-      --border:     rgba(74,144,184,0.18);
-      --border-focus: rgba(74,144,184,0.6);
+      --navy:        #0D1F35;
+      --navy-mid:    #1E3A55;
+      --blue:        #3A7CA5;
+      --blue-light:  #5FA8D3;
+      --blue-pale:   #E8F4FA;
+      --text:        #1A2E42;
+      --text-mid:    #4A6278;
+      --text-muted:  #8FA4B8;
+      --border:      #D0DFE8;
+      --border-focus:#3A7CA5;
+      --white:       #FFFFFF;
+      --bg-section:  #F7FAFB;
     }
- 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
     html { scroll-behavior: smooth; }
- 
     body {
-      min-height: 100vh;
-      background: var(--navy);
-      color: var(--white);
+      background: var(--white);
+      color: var(--text);
       font-family: 'DM Sans', sans-serif;
       font-weight: 300;
+      min-height: 100vh;
       overflow-x: hidden;
     }
- 
-    /* Grid texture */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(74,144,184,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(74,144,184,0.035) 1px, transparent 1px);
-      background-size: 52px 52px;
-      pointer-events: none;
-      z-index: 0;
-    }
- 
-    /* Radial glow behind logo */
-    body::after {
-      content: '';
-      position: fixed;
-      top: -10vh;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(74,144,184,0.07) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
- 
-    .page {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 1.5rem 5rem;
-    }
- 
-    /* ── HERO ── */
     .hero {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 6rem 0 4rem;
+      padding: 5rem 2rem 4rem;
+      background: var(--white);
       animation: fadeDown 0.7s ease both;
     }
- 
-    .hero img {
-      width: 88px;
-      height: auto;
-      margin-bottom: 1.75rem;
-    }
- 
+    .hero img { width: 120px; height: auto; margin-bottom: 2rem; }
     .hero h1 {
-      font-family: 'DM Serif Display', serif;
+      font-family: 'Cormorant Garamond', serif;
       font-weight: 400;
-      font-size: clamp(2rem, 5vw, 2.75rem);
-      letter-spacing: 0.01em;
-      line-height: 1.15;
-      color: var(--white);
+      font-size: clamp(2.4rem, 6vw, 3.5rem);
+      color: var(--navy);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
       margin-bottom: 0.6rem;
     }
- 
     .hero .tagline {
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--blue);
       margin-bottom: 1.5rem;
     }
- 
-    .hero .sub {
-      font-size: 1rem;
-      color: var(--muted);
-      font-weight: 300;
+    .hero .coming-soon {
+      font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      letter-spacing: 0.02em;
+      font-weight: 300;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
     }
- 
-    /* Arrow down */
     .scroll-hint {
-      margin-top: 3.5rem;
+      margin-top: 3rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.4rem;
-      opacity: 0.35;
-      animation: fadeDown 0.7s ease 0.4s both;
+      gap: 0.35rem;
+      cursor: pointer;
+      text-decoration: none;
     }
- 
     .scroll-hint span {
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--text-muted);
     }
- 
-    .scroll-hint svg {
-      animation: bounce 1.8s ease infinite;
-    }
- 
+    .scroll-hint svg { animation: bounce 2s ease infinite; }
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(5px); }
+      50%       { transform: translateY(6px); }
     }
- 
-    /* ── DIVIDER ── */
-    .divider-line {
-      width: 100%;
-      max-width: 560px;
-      height: 1px;
-      background: var(--border);
-      margin: 0 auto 3.5rem;
-    }
- 
-    /* ── FORM SECTION ── */
+    .rule { width: 100%; max-width: 640px; margin: 0 auto; height: 1px; background: var(--border); }
     .form-section {
-      width: 100%;
-      max-width: 560px;
-      animation: fadeUp 0.7s ease 0.2s both;
+      background: var(--bg-section);
+      padding: 4rem 1.5rem 5rem;
+      animation: fadeUp 0.7s ease 0.15s both;
     }
- 
-    .form-header {
-      text-align: center;
-      margin-bottom: 2.25rem;
-    }
- 
-    .form-header .label {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
+    .form-inner { max-width: 600px; margin: 0 auto; }
+    .form-header { text-align: center; margin-bottom: 2.5rem; }
+    .form-header .eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--blue);
       margin-bottom: 0.5rem;
     }
- 
     .form-header h2 {
-      font-family: 'DM Serif Display', serif;
+      font-family: 'Cormorant Garamond', serif;
       font-weight: 400;
-      font-size: 1.5rem;
-      color: var(--white);
+      font-size: 2rem;
+      color: var(--navy);
+      letter-spacing: 0.02em;
     }
- 
     .card {
-      background: var(--navy-card);
+      background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 2.25rem 2.25rem 1.75rem;
+      border-radius: 3px;
+      padding: 2.5rem 2.5rem 2rem;
+      box-shadow: 0 2px 20px rgba(13,31,53,0.06);
     }
- 
     .section-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.18em;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--blue);
-      padding-bottom: 0.65rem;
+      padding-bottom: 0.6rem;
       border-bottom: 1px solid var(--border);
       margin-bottom: 1.25rem;
     }
- 
     .field-group { margin-bottom: 1.75rem; }
- 
-    .field { margin-bottom: 1rem; }
- 
+    .field       { margin-bottom: 0.9rem; }
     label {
       display: block;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
+      font-weight: 400;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
+      color: var(--text-mid);
+      margin-bottom: 0.35rem;
     }
- 
-    input, textarea {
+    input, select, textarea {
       width: 100%;
-      background: var(--navy-input);
+      background: var(--white);
       border: 1px solid var(--border);
       border-radius: 2px;
-      color: var(--white);
+      color: var(--text);
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.93rem;
+      font-size: 0.92rem;
       font-weight: 300;
-      padding: 0.68rem 0.9rem;
+      padding: 0.7rem 0.9rem;
       outline: none;
-      transition: border-color 0.2s, background 0.15s;
+      transition: border-color 0.2s, box-shadow 0.2s;
       -webkit-appearance: none;
+      appearance: none;
     }
- 
-    input::placeholder, textarea::placeholder { color: #2a3f55; }
- 
-    input:focus, textarea:focus {
+    input::placeholder, textarea::placeholder { color: var(--text-muted); font-weight: 300; }
+    input:focus, select:focus, textarea:focus {
       border-color: var(--border-focus);
-      background: #0b1a28;
+      box-shadow: 0 0 0 3px rgba(58,124,165,0.08);
     }
- 
-    /* Remove number spinners */
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238FA4B8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.9rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
     input[type=number] { -moz-appearance: textfield; }
- 
-    .row-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.9rem;
-    }
- 
-    textarea {
-      resize: vertical;
-      min-height: 85px;
-      line-height: 1.5;
-    }
- 
-    /* Submit row */
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+    textarea { resize: vertical; min-height: 90px; line-height: 1.55; }
     .submit-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
       flex-wrap: wrap;
-      margin-top: 0.25rem;
+      margin-top: 0.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
     }
- 
-    .submit-note {
-      font-size: 0.73rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
- 
+    .submit-note { font-size: 0.73rem; color: var(--text-muted); line-height: 1.5; }
     button[type="submit"] {
-      background: var(--blue);
+      background: var(--navy);
       color: var(--white);
       border: none;
       border-radius: 2px;
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      padding: 0.8rem 2rem;
+      padding: 0.85rem 2.25rem;
       cursor: pointer;
       transition: background 0.2s, transform 0.1s;
       white-space: nowrap;
     }
- 
-    button[type="submit"]:hover { background: var(--blue-light); }
+    button[type="submit"]:hover  { background: var(--blue); }
     button[type="submit"]:active { transform: scale(0.98); }
- 
-    /* Success */
-    .success-msg {
-      display: none;
-      text-align: center;
-      padding: 2.5rem 1rem;
-    }
- 
-    .success-msg .mark {
-      font-size: 1.8rem;
-      color: var(--blue);
-      margin-bottom: 0.75rem;
-    }
- 
+    button[type="submit"]:disabled { background: var(--text-muted); cursor: not-allowed; }
+    .success-msg { display: none; text-align: center; padding: 3rem 1rem 2rem; }
+    .success-msg .mark { font-size: 2rem; color: var(--blue); margin-bottom: 0.75rem; }
     .success-msg h3 {
-      font-family: 'DM Serif Display', serif;
+      font-family: 'Cormorant Garamond', serif;
       font-weight: 400;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
+      color: var(--navy);
       margin-bottom: 0.4rem;
     }
- 
-    .success-msg p {
-      font-size: 0.83rem;
-      color: var(--muted);
-    }
- 
-    /* Footer */
+    .success-msg p { font-size: 0.83rem; color: var(--text-muted); }
     footer {
-      margin-top: 3.5rem;
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.06em;
+      background: var(--navy);
       text-align: center;
-      opacity: 0.6;
+      padding: 1.5rem;
+      font-size: 0.7rem;
+      color: rgba(245,248,250,0.35);
+      letter-spacing: 0.06em;
     }
- 
-    /* Animations */
     @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-18px); }
+      from { opacity: 0; transform: translateY(-16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
- 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
- 
-    /* Mobile */
-    @media (max-width: 480px) {
-      .hero { padding: 4rem 0 3rem; }
+    @media (max-width: 500px) {
+      .hero { padding: 3.5rem 1.5rem 3rem; }
+      .hero img { width: 96px; }
       .card { padding: 1.5rem 1.25rem; }
       .row-2 { grid-template-columns: 1fr; }
       .submit-row { flex-direction: column; align-items: stretch; }
-      button[type="submit"] { text-align: center; width: 100%; }
+      button[type="submit"] { text-align: center; }
     }
   </style>
 </head>
 <body>
-<div class="page">
  
-  <!-- HERO -->
   <section class="hero" id="top">
     <img src="Mati_Final_Logo.svg" alt="Mati Insights">
     <h1>Mati Insights</h1>
     <p class="tagline">The independent commercial screen for hospitality projects</p>
-    <p class="sub">Coming soon.</p>
-    <div class="scroll-hint">
+    <p class="coming-soon">Coming soon.</p>
+    <a class="scroll-hint" href="#enquiry">
       <span>Enquire</span>
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 3v10M3 8l5 5 5-5" stroke="#7A90A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1l6 7 6-7" stroke="#8FA4B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-    </div>
+    </a>
   </section>
  
-  <!-- DIVIDER -->
-  <div class="divider-line"></div>
+  <div class="rule"></div>
  
-  <!-- ENQUIRY FORM -->
   <section class="form-section" id="enquiry">
-    <div class="form-header">
-      <p class="label">Get in touch</p>
-      <h2>Register Your Interest</h2>
-    </div>
+    <div class="form-inner">
+      <div class="form-header">
+        <p class="eyebrow">Get in touch</p>
+        <h2>Register Your Interest</h2>
+      </div>
+      <div class="card">
+        <!-- IMPORTANT: Replace YOUR_FORM_ID with your Formspree ID -->
+        <form id="enquiry-form" action="https://formspree.io/f/mvzwbwqe" method="POST">
  
-    <div class="card">
-      <!-- Replace YOUR_FORM_ID with your Formspree ID -->
-      <form id="enquiry-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="field-group">
+            <div class="section-label">Your Details</div>
+            <div class="row-2">
+              <div class="field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Full name" required>
+              </div>
+              <div class="field">
+                <label for="company">Company / Business</label>
+                <input type="text" id="company" name="company" placeholder="Trading name">
+              </div>
+            </div>
+            <div class="row-2">
+              <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+              </div>
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="+44">
+              </div>
+            </div>
+          </div>
  
-        <div class="field-group">
-          <div class="section-label">Your Details</div>
-          <div class="row-2">
-            <div class="field">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Full name" required>
+          <div class="field-group">
+            <div class="section-label">Project Details</div>
+            <div class="row-2">
+              <div class="field">
+                <label for="city">City</label>
+                <select id="city" name="city">
+                  <option value="" disabled selected>Select city</option>
+                  <option>London</option>
+                  <option>Lisbon</option>
+                  <option>Athens</option>
+                  <option>Mykonos</option>
+                  <option>Madrid</option>
+                  <option>Paris</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="concept">Business Model</label>
+                <select id="concept" name="concept">
+                  <option value="" disabled selected>Select model</option>
+                  <option>Coffee Shop</option>
+                  <option>Fast Food</option>
+                  <option>Bar / Nightclub</option>
+                  <option>Independent Restaurant</option>
+                  <option>High End Destination</option>
+                </select>
+              </div>
             </div>
-            <div class="field">
-              <label for="company">Company / Business</label>
-              <input type="text" id="company" name="company" placeholder="Trading name">
+            <div class="row-2">
+              <div class="field">
+                <label for="project_type">Project Type</label>
+                <select id="project_type" name="project_type">
+                  <option value="" disabled selected>Select type</option>
+                  <option>Brand New Site</option>
+                  <option>Local Growth</option>
+                  <option>Group Rollout</option>
+                  <option>Buy &amp; Rebrand</option>
+                  <option>Managed Contract</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="area">Site Area (m²)</label>
+                <input type="number" id="area" name="area" placeholder="e.g. 120">
+              </div>
             </div>
-          </div>
-          <div class="row-2">
-            <div class="field">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            <div class="row-2">
+              <div class="field">
+                <label for="capex">Capex (£)</label>
+                <input type="number" id="capex" name="capex" placeholder="e.g. 250,000">
+              </div>
+              <div class="field">
+                <label for="rent">Rent per Annum (£)</label>
+                <input type="number" id="rent" name="rent" placeholder="e.g. 80,000">
+              </div>
             </div>
-            <div class="field">
-              <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone" placeholder="+44">
-            </div>
-          </div>
-        </div>
- 
-        <div class="field-group">
-          <div class="section-label">Project Details</div>
-          <div class="row-2">
-            <div class="field">
-              <label for="city">City</label>
-              <input type="text" id="city" name="city" placeholder="e.g. London">
-            </div>
-            <div class="field">
-              <label for="concept">Concept / Business Type</label>
-              <input type="text" id="concept" name="concept" placeholder="e.g. Independent Restaurant">
-            </div>
-          </div>
-          <div class="row-2">
-            <div class="field">
-              <label for="area">Site Area (m²)</label>
-              <input type="number" id="area" name="area" placeholder="e.g. 120">
-            </div>
-            <div class="field">
-              <label for="capex">Capex (£)</label>
-              <input type="number" id="capex" name="capex" placeholder="e.g. 250000">
-            </div>
-          </div>
-          <div class="row-2">
             <div class="field">
               <label for="avg_spend">Avg. Spend per Cover (£)</label>
               <input type="number" id="avg_spend" name="avg_spend" placeholder="e.g. 45">
             </div>
             <div class="field">
-              <label for="rent">Rent per Annum (£)</label>
-              <input type="number" id="rent" name="rent" placeholder="e.g. 80000">
+              <label for="message">Additional Notes</label>
+              <textarea id="message" name="message" placeholder="Anything else we should know about this project…"></textarea>
             </div>
           </div>
-          <div class="field">
-            <label for="message">Additional Notes</label>
-            <textarea id="message" name="message" placeholder="Anything else we should know about this project…"></textarea>
+ 
+          <div class="submit-row">
+            <p class="submit-note">We respond within 1 business day.<br>hello@matiinsights.com</p>
+            <button type="submit" id="submit-btn">Submit Enquiry</button>
           </div>
+ 
+        </form>
+ 
+        <div class="success-msg" id="success-msg">
+          <div class="mark">✦</div>
+          <h3>Enquiry Received</h3>
+          <p>We'll be in touch within 1 business day.</p>
         </div>
- 
-        <div class="submit-row">
-          <p class="submit-note">We respond within 1 business day.</p>
-          <button type="submit">Submit Enquiry</button>
-        </div>
- 
-      </form>
- 
-      <div class="success-msg" id="success-msg">
-        <div class="mark">✦</div>
-        <h3>Enquiry Received</h3>
-        <p>We'll be in touch within 1 business day.</p>
       </div>
     </div>
   </section>
  
   <footer>© 2026 Mati Insights. All rights reserved.</footer>
  
-</div>
- 
 <script>
   const form = document.getElementById('enquiry-form');
   const success = document.getElementById('success-msg');
+  const btn = document.getElementById('submit-btn');
  
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
     btn.textContent = 'Sending…';
     btn.disabled = true;
- 
     try {
       const response = await fetch(form.action, {
         method: 'POST',
