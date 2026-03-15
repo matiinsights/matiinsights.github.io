@@ -4,44 +4,475 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mati Insights</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      background: #fff; margin: 0; padding: 0; height: 100%; width: 100%;
+    :root {
+      --navy:       #0D1F35;
+      --navy-mid:   #122030;
+      --navy-card:  #152840;
+      --navy-input: #0D1F35;
+      --blue:       #4A90B8;
+      --blue-light: #7BB8D4;
+      --white:      #F5F8FA;
+      --muted:      #7A90A8;
+      --border:     rgba(74,144,184,0.18);
+      --border-focus: rgba(74,144,184,0.6);
     }
+ 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    html { scroll-behavior: smooth; }
+ 
     body {
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center; font-family: sans-serif; color: #333;
+      min-height: 100vh;
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
     }
-    .logo {
-      width: 60vw; max-height: 50vh; height: auto; margin-bottom: 2rem;
+ 
+    /* Grid texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(74,144,184,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74,144,184,0.035) 1px, transparent 1px);
+      background-size: 52px 52px;
+      pointer-events: none;
+      z-index: 0;
     }
-    h1 { font-size: 2rem; margin-bottom: 1rem; }
-    p { font-size: 1rem; margin-bottom: 2rem; line-height: 1.4; }
-    .sheet-container {
-      width: 90vw; max-width: 800px; margin: 2rem auto;
+ 
+    /* Radial glow behind logo */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -10vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(74,144,184,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
     }
-    .sheet-container iframe {
-      width: 100%; height: 60vh; border: none;
+ 
+    .page {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 1.5rem 5rem;
     }
-    .notify-btn {
-      padding: .75rem 1.5rem; background: #0070f3;
-      color: #fff; text-decoration: none;
-      border-radius: 4px; font-weight: bold;
-      transition: background .2s;
+ 
+    /* ── HERO ── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 0 4rem;
+      animation: fadeDown 0.7s ease both;
     }
-    .notify-btn:hover { background: #0059c1; }
+ 
+    .hero img {
+      width: 88px;
+      height: auto;
+      margin-bottom: 1.75rem;
+    }
+ 
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+ 
+    .hero .tagline {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+    }
+ 
+    .hero .sub {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.02em;
+    }
+ 
+    /* Arrow down */
+    .scroll-hint {
+      margin-top: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0.35;
+      animation: fadeDown 0.7s ease 0.4s both;
+    }
+ 
+    .scroll-hint span {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+ 
+    .scroll-hint svg {
+      animation: bounce 1.8s ease infinite;
+    }
+ 
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(5px); }
+    }
+ 
+    /* ── DIVIDER ── */
+    .divider-line {
+      width: 100%;
+      max-width: 560px;
+      height: 1px;
+      background: var(--border);
+      margin: 0 auto 3.5rem;
+    }
+ 
+    /* ── FORM SECTION ── */
+    .form-section {
+      width: 100%;
+      max-width: 560px;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+ 
+    .form-header {
+      text-align: center;
+      margin-bottom: 2.25rem;
+    }
+ 
+    .form-header .label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.5rem;
+    }
+ 
+    .form-header h2 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      color: var(--white);
+    }
+ 
+    .card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 2.25rem 2.25rem 1.75rem;
+    }
+ 
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.25rem;
+    }
+ 
+    .field-group { margin-bottom: 1.75rem; }
+ 
+    .field { margin-bottom: 1rem; }
+ 
+    label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+ 
+    input, textarea {
+      width: 100%;
+      background: var(--navy-input);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.93rem;
+      font-weight: 300;
+      padding: 0.68rem 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.15s;
+      -webkit-appearance: none;
+    }
+ 
+    input::placeholder, textarea::placeholder { color: #2a3f55; }
+ 
+    input:focus, textarea:focus {
+      border-color: var(--border-focus);
+      background: #0b1a28;
+    }
+ 
+    /* Remove number spinners */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
+    input[type=number] { -moz-appearance: textfield; }
+ 
+    .row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+    }
+ 
+    textarea {
+      resize: vertical;
+      min-height: 85px;
+      line-height: 1.5;
+    }
+ 
+    /* Submit row */
+    .submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.25rem;
+    }
+ 
+    .submit-note {
+      font-size: 0.73rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+ 
+    button[type="submit"] {
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.8rem 2rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      white-space: nowrap;
+    }
+ 
+    button[type="submit"]:hover { background: var(--blue-light); }
+    button[type="submit"]:active { transform: scale(0.98); }
+ 
+    /* Success */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 2.5rem 1rem;
+    }
+ 
+    .success-msg .mark {
+      font-size: 1.8rem;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+    }
+ 
+    .success-msg h3 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.3rem;
+      margin-bottom: 0.4rem;
+    }
+ 
+    .success-msg p {
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+ 
+    /* Footer */
     footer {
-      margin-top: 3rem; font-size: .75rem; color: #666;
+      margin-top: 3.5rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-align: center;
+      opacity: 0.6;
+    }
+ 
+    /* Animations */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+ 
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+ 
+    /* Mobile */
+    @media (max-width: 480px) {
+      .hero { padding: 4rem 0 3rem; }
+      .card { padding: 1.5rem 1.25rem; }
+      .row-2 { grid-template-columns: 1fr; }
+      .submit-row { flex-direction: column; align-items: stretch; }
+      button[type="submit"] { text-align: center; width: 100%; }
     }
   </style>
 </head>
 <body>
-  <img src="Mati_Final_Logo.svg" alt="Mati Insights Logo" class="logo">
-  <h1>Insightful Feasibilty...</h1>
-  <p>…coming soon!</p>
-
-  <a href="#notify" class="notify-btn">Notify Me</a>
-  <footer>© 2025 Mati Insights. All rights reserved.</footer>
+<div class="page">
+ 
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <img src="Mati_Final_Logo.svg" alt="Mati Insights">
+    <h1>Mati Insights</h1>
+    <p class="tagline">The independent commercial screen for hospitality projects</p>
+    <p class="sub">Coming soon.</p>
+    <div class="scroll-hint">
+      <span>Enquire</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 3v10M3 8l5 5 5-5" stroke="#7A90A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </section>
+ 
+  <!-- DIVIDER -->
+  <div class="divider-line"></div>
+ 
+  <!-- ENQUIRY FORM -->
+  <section class="form-section" id="enquiry">
+    <div class="form-header">
+      <p class="label">Get in touch</p>
+      <h2>Register Your Interest</h2>
+    </div>
+ 
+    <div class="card">
+      <!-- Replace YOUR_FORM_ID with your Formspree ID -->
+      <form id="enquiry-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+ 
+        <div class="field-group">
+          <div class="section-label">Your Details</div>
+          <div class="row-2">
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Full name" required>
+            </div>
+            <div class="field">
+              <label for="company">Company / Business</label>
+              <input type="text" id="company" name="company" placeholder="Trading name">
+            </div>
+          </div>
+          <div class="row-2">
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="+44">
+            </div>
+          </div>
+        </div>
+ 
+        <div class="field-group">
+          <div class="section-label">Project Details</div>
+          <div class="row-2">
+            <div class="field">
+              <label for="city">City</label>
+              <input type="text" id="city" name="city" placeholder="e.g. London">
+            </div>
+            <div class="field">
+              <label for="concept">Concept / Business Type</label>
+              <input type="text" id="concept" name="concept" placeholder="e.g. Independent Restaurant">
+            </div>
+          </div>
+          <div class="row-2">
+            <div class="field">
+              <label for="area">Site Area (m²)</label>
+              <input type="number" id="area" name="area" placeholder="e.g. 120">
+            </div>
+            <div class="field">
+              <label for="capex">Capex (£)</label>
+              <input type="number" id="capex" name="capex" placeholder="e.g. 250000">
+            </div>
+          </div>
+          <div class="row-2">
+            <div class="field">
+              <label for="avg_spend">Avg. Spend per Cover (£)</label>
+              <input type="number" id="avg_spend" name="avg_spend" placeholder="e.g. 45">
+            </div>
+            <div class="field">
+              <label for="rent">Rent per Annum (£)</label>
+              <input type="number" id="rent" name="rent" placeholder="e.g. 80000">
+            </div>
+          </div>
+          <div class="field">
+            <label for="message">Additional Notes</label>
+            <textarea id="message" name="message" placeholder="Anything else we should know about this project…"></textarea>
+          </div>
+        </div>
+ 
+        <div class="submit-row">
+          <p class="submit-note">We respond within 1 business day.</p>
+          <button type="submit">Submit Enquiry</button>
+        </div>
+ 
+      </form>
+ 
+      <div class="success-msg" id="success-msg">
+        <div class="mark">✦</div>
+        <h3>Enquiry Received</h3>
+        <p>We'll be in touch within 1 business day.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <footer>© 2026 Mati Insights. All rights reserved.</footer>
+ 
+</div>
+ 
+<script>
+  const form = document.getElementById('enquiry-form');
+  const success = document.getElementById('success-msg');
+ 
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+ 
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        throw new Error();
+      }
+    } catch {
+      btn.textContent = 'Submit Enquiry';
+      btn.disabled = false;
+      alert('Something went wrong. Please email us at hello@matiinsights.com');
+    }
+  });
+</script>
 </body>
 </html>
