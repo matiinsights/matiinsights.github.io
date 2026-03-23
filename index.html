@@ -14,294 +14,66 @@
       --text:        #1B3A5C;
       --text-mid:    #4A6278;
       --text-muted:  #8FA4B8;
-      --border:      #D4C9A8;
-      --border-focus:#C9952A;
       --white:       #FFFFFF;
       --bg-hero:     #FFFFFF;
       --bg-form:     #F7F4EE;
       --bg-card:     #FFFFFF;
       --bg-input:    #FDFBF7;
     }
- 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg-hero);
-      color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: 400;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
- 
-    /* ── HERO ── */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 5.5rem 2rem 4.5rem;
-      background: var(--bg-hero);
-      animation: fadeDown 0.7s ease both;
-    }
+    body { background: var(--bg-hero); color: var(--text); font-family: Arial, Helvetica, sans-serif; font-weight: 400; min-height: 100vh; overflow-x: hidden; }
+    .hero { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 5.5rem 2rem 4.5rem; background: var(--bg-hero); animation: fadeDown 0.7s ease both; }
     .hero img { width: 130px; height: auto; margin-bottom: 2.25rem; }
-    .hero h1 {
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: 700;
-      font-size: clamp(2.8rem, 6vw, 4rem);
-      color: var(--navy);
-      letter-spacing: 0.04em;
-      line-height: 1.1;
-      margin-bottom: 0.65rem;
-    }
-    .hero .tagline {
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.75rem;
-    }
-    .hero .coming-soon {
-      font-family: Arial, Helvetica, sans-serif;
-      font-style: italic;
-      font-weight: 400;
-      font-size: 1.25rem;
-      color: var(--text-muted);
-    }
-    .scroll-hint {
-      margin-top: 3.25rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      text-decoration: none;
-    }
-    .scroll-hint span {
-      font-size: 0.6rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
+    .hero h1 { font-weight: 700; font-size: clamp(2.8rem, 6vw, 4rem); color: var(--navy); letter-spacing: 0.04em; line-height: 1.1; margin-bottom: 0.65rem; }
+    .hero .tagline { font-size: 0.7rem; font-weight: 400; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.75rem; }
+    .hero .coming-soon { font-style: italic; font-size: 1.25rem; color: var(--text-muted); }
+    .scroll-hint { margin-top: 3.25rem; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; text-decoration: none; }
+    .scroll-hint span { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
     .scroll-hint svg { animation: bounce 2s ease infinite; }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(6px); }
-    }
- 
-    /* Gold rule */
-    .rule {
-      width: calc(100% - 4rem);
-      max-width: 680px;
-      margin: 0 auto;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold-light), transparent);
-    }
- 
-    /* ── FORM SECTION ── */
-    .form-section {
-      background: var(--bg-form);
-      padding: 4.5rem 1.5rem 6rem;
-      animation: fadeUp 0.7s ease 0.15s both;
-    }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+    .rule { width: calc(100% - 4rem); max-width: 680px; margin: 0 auto; height: 1px; background: linear-gradient(to right, transparent, var(--gold-light), transparent); }
+    .form-section { background: var(--bg-form); padding: 4.5rem 1.5rem 6rem; animation: fadeUp 0.7s ease 0.15s both; }
     .form-inner { max-width: 620px; margin: 0 auto; }
- 
     .form-header { text-align: center; margin-bottom: 2.75rem; }
-    .form-header .eyebrow {
-      font-size: 0.67rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-    }
-    .form-header h2 {
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: 700;
-      font-size: 2.2rem;
-      color: var(--navy);
-      letter-spacing: 0.02em;
-    }
- 
-    /* Card */
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--gold-light);
-      border-top: 3px solid var(--gold);
-      border-radius: 3px;
-      padding: 2.5rem 2.5rem 2.25rem;
-      box-shadow: 0 4px 28px rgba(27,58,92,0.07);
-    }
- 
-    .section-label {
-      font-size: 0.63rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      padding-bottom: 0.6rem;
-      border-bottom: 1px solid var(--gold-light);
-      margin-bottom: 1.35rem;
-    }
- 
+    .form-header .eyebrow { font-size: 0.67rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .form-header h2 { font-weight: 700; font-size: 2.2rem; color: var(--navy); letter-spacing: 0.02em; }
+    .card { background: var(--bg-card); border: 1px solid var(--gold-light); border-top: 3px solid var(--gold); border-radius: 3px; padding: 2.5rem 2.5rem 2.25rem; box-shadow: 0 4px 28px rgba(27,58,92,0.07); }
+    .section-label { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); padding-bottom: 0.6rem; border-bottom: 1px solid var(--gold-light); margin-bottom: 1.35rem; }
     .field-group { margin-bottom: 2rem; }
-    .field       { margin-bottom: 1rem; }
- 
-    label {
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-mid);
-      margin-bottom: 0.38rem;
-    }
- 
-    input, select, textarea {
-      width: 100%;
-      background: var(--bg-input);
-      border: 1px solid #D8CCAE;
-      border-radius: 2px;
-      color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.92rem;
-      font-weight: 400;
-      padding: 0.72rem 0.9rem;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-    input::placeholder, textarea::placeholder {
-      color: #B8C4CC;
-      font-weight: 400;
-    }
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--gold);
-      background: #FFFDF9;
-      box-shadow: 0 0 0 3px rgba(201,149,42,0.1);
-    }
-    select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23C9952A' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 0.9rem center;
-      padding-right: 2.5rem;
-      cursor: pointer;
-      color: var(--text);
-    }
+    .field { margin-bottom: 1rem; }
+    label { display: block; font-size: 0.68rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 0.38rem; }
+    input, select, textarea { width: 100%; background: var(--bg-input); border: 1px solid #D8CCAE; border-radius: 2px; color: var(--text); font-family: Arial, Helvetica, sans-serif; font-size: 0.92rem; font-weight: 400; padding: 0.72rem 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; -webkit-appearance: none; appearance: none; }
+    input::placeholder, textarea::placeholder { color: #B8C4CC; }
+    input:focus, select:focus, textarea:focus { border-color: var(--gold); background: #FFFDF9; box-shadow: 0 0 0 3px rgba(201,149,42,0.1); }
+    select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23C9952A' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; cursor: pointer; }
     select option[value=""] { color: #B8C4CC; }
- 
     .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
- 
     textarea { resize: vertical; min-height: 88px; line-height: 1.55; }
- 
-    /* Percentage input wrapper */
-    .input-suffix {
-      position: relative;
-    }
-    .input-suffix input {
-      padding-right: 2.2rem;
-    }
-    .input-suffix .suffix {
-      position: absolute;
-      right: 0.9rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      pointer-events: none;
-    }
- 
-    /* Gold divider between sections */
-    .section-divider {
-      height: 1px;
-      background: linear-gradient(to right, var(--gold-light), transparent);
-      margin: 0.25rem 0 1.75rem;
-    }
- 
-    /* Submit */
-    .submit-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 0.75rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--gold-light);
-    }
-    .submit-note {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-    .submit-note a {
-      color: var(--gold);
-      text-decoration: none;
-    }
-    button[type="submit"] {
-      background: var(--navy);
-      color: var(--white);
-      border: none;
-      border-radius: 2px;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 0.9rem 2.5rem;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      white-space: nowrap;
-    }
-    button[type="submit"]:hover   { background: var(--gold); }
-    button[type="submit"]:active  { transform: scale(0.98); }
+    .input-suffix { position: relative; }
+    .input-suffix input { padding-right: 2.2rem; }
+    .input-suffix .suffix { position: absolute; right: 0.9rem; top: 50%; transform: translateY(-50%); font-size: 0.82rem; color: var(--text-muted); pointer-events: none; }
+    .section-divider { height: 1px; background: linear-gradient(to right, var(--gold-light), transparent); margin: 0.25rem 0 1.75rem; }
+    .submit-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 0.75rem; padding-top: 1.25rem; border-top: 1px solid var(--gold-light); }
+    .submit-note { font-size: 0.72rem; color: var(--text-muted); line-height: 1.65; }
+    .submit-note a { color: var(--gold); text-decoration: none; }
+    button[type="submit"] { background: var(--navy); color: var(--white); border: none; border-radius: 2px; font-family: Arial, Helvetica, sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.9rem 2.5rem; cursor: pointer; transition: background 0.2s, transform 0.1s; white-space: nowrap; }
+    button[type="submit"]:hover { background: var(--gold); }
+    button[type="submit"]:active { transform: scale(0.98); }
     button[type="submit"]:disabled { background: var(--text-muted); cursor: not-allowed; }
- 
-    /* Success */
     .success-msg { display: none; text-align: center; padding: 3.5rem 1rem 2.5rem; }
     .success-msg .mark { font-size: 1.75rem; color: var(--gold); margin-bottom: 0.75rem; }
-    .success-msg h3 {
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: 700;
-      font-size: 1.6rem;
-      color: var(--navy);
-      margin-bottom: 0.45rem;
-    }
+    .success-msg h3 { font-weight: 700; font-size: 1.6rem; color: var(--navy); margin-bottom: 0.45rem; }
     .success-msg p { font-size: 0.83rem; color: var(--text-muted); }
- 
-    /* Footer */
-    footer {
-      background: var(--navy);
-      text-align: center;
-      padding: 1.75rem;
-      font-size: 0.68rem;
-      color: rgba(255,255,255,0.28);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
- 
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
- 
-    @media (max-width: 540px) {
-      .hero { padding: 3.5rem 1.5rem 3rem; }
-      .hero img { width: 100px; }
-      .card { padding: 1.5rem 1.25rem; }
-      .row-2, .row-3 { grid-template-columns: 1fr; }
-      .submit-row { flex-direction: column; align-items: stretch; }
-      button[type="submit"] { text-align: center; }
-    }
+    footer { background: var(--navy); text-align: center; padding: 1.75rem; font-size: 0.68rem; color: rgba(255,255,255,0.28); letter-spacing: 0.1em; text-transform: uppercase; }
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 540px) { .hero { padding: 3.5rem 1.5rem 3rem; } .hero img { width: 100px; } .card { padding: 1.5rem 1.25rem; } .row-2, .row-3 { grid-template-columns: 1fr; } .submit-row { flex-direction: column; align-items: stretch; } button[type="submit"] { text-align: center; } }
   </style>
 </head>
 <body>
  
-  <!-- HERO -->
   <section class="hero" id="top">
     <img src="Mati_Final_Logo.svg" alt="Mati Insights">
     <h1>Mati Insights</h1>
@@ -317,183 +89,79 @@
  
   <div class="rule"></div>
  
-  <!-- ENQUIRY FORM -->
   <section class="form-section" id="enquiry">
     <div class="form-inner">
       <div class="form-header">
         <p class="eyebrow">Get in touch</p>
         <h2>Register Your Interest</h2>
       </div>
- 
       <div class="card">
-        <form id="enquiry-form" action="https://formspree.io/f/mvzwbwqe" method="POST">
+        <form id="enquiry-form">
  
-          <!-- YOUR DETAILS -->
           <div class="field-group">
-            <div class="section-label">Your Details</div>
+            <div class="section-label">A. Client Details</div>
             <div class="row-2">
-              <div class="field">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Full name" required>
-              </div>
-              <div class="field">
-                <label for="company">Company / Business</label>
-                <input type="text" id="company" name="company" placeholder="Trading name">
-              </div>
+              <div class="field"><label for="name">Name</label><input type="text" id="name" name="name" placeholder="Full name" required></div>
+              <div class="field"><label for="company">Company / Business</label><input type="text" id="company" name="company" placeholder="Trading name"></div>
             </div>
             <div class="row-2">
-              <div class="field">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="you@example.com" required>
-              </div>
-              <div class="field">
-                <label for="phone">Phone</label>
-                <input type="tel" id="phone" name="phone" placeholder="+44">
-              </div>
+              <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="you@example.com" required></div>
+              <div class="field"><label for="phone">Phone</label><input type="tel" id="phone" name="phone" placeholder="+44"></div>
+            </div>
+            <div class="row-2">
+              <div class="field"><label for="currency">Currency</label><select id="currency" name="currency"><option value="£" selected>£ GBP</option><option value="€">€ EUR</option></select></div>
+              <div class="field"><label for="city">City</label><select id="city" name="city" required><option value="" disabled selected>Select city</option><option>London</option><option>Lisbon</option><option>Athens</option><option>Mykonos</option><option>Madrid</option><option>Paris</option></select></div>
+            </div>
+            <div class="row-2">
+              <div class="field"><label for="concept">Concept / Model</label><select id="concept" name="concept" required><option value="" disabled selected>Select model</option><option>Coffee Shop</option><option>Fast Food</option><option>Bar / Nightclub</option><option>Independent Restaurant</option><option>High End Destination</option></select></div>
+              <div class="field"><label for="project_type">Project Type</label><select id="project_type" name="project_type" required><option value="" disabled selected>Select type</option><option>Brand New Site</option><option>Local Growth</option><option>Group Rollout</option><option>Buy &amp; Rebrand</option><option>Managed Contract</option></select></div>
+            </div>
+            <div class="row-2">
+              <div class="field"><label for="geo_profile">Geolocation Profile</label><select id="geo_profile" name="geo_profile" required><option value="" disabled selected>Select profile</option><option>Urban Prime</option><option>Urban Secondary</option><option>Beach Resort</option><option>Suburban Neighbourhood</option><option>Rural Destination</option></select></div>
+              <div class="field"><label for="building_state">Building State</label><select id="building_state" name="building_state" required><option value="" disabled selected>Select state</option><option>New Build</option><option>Refurbished</option><option>Takeover</option><option>Second Occupancy</option><option>Heritage</option></select></div>
             </div>
           </div>
  
           <div class="section-divider"></div>
  
-          <!-- PROJECT CONFIGURATION -->
           <div class="field-group">
-            <div class="section-label">Project Configuration</div>
+            <div class="section-label">B. Unit Specifications</div>
             <div class="row-2">
-              <div class="field">
-                <label for="city">City</label>
-                <select id="city" name="city">
-                  <option value="" disabled selected>Select city</option>
-                  <option>London</option>
-                  <option>Lisbon</option>
-                  <option>Athens</option>
-                  <option>Mykonos</option>
-                  <option>Madrid</option>
-                  <option>Paris</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="concept">Concept / Model</label>
-                <select id="concept" name="concept">
-                  <option value="" disabled selected>Select model</option>
-                  <option>Coffee Shop</option>
-                  <option>Fast Food</option>
-                  <option>Bar / Nightclub</option>
-                  <option>Independent Restaurant</option>
-                  <option>High End Destination</option>
-                </select>
-              </div>
+              <div class="field"><label for="rent">Annual Rent</label><input type="text" inputmode="numeric" id="rent" name="rent" placeholder="e.g. 250,000" class="num-format" required></div>
+              <div class="field"><label for="area">Area (m² GIA)</label><input type="text" inputmode="numeric" id="area" name="area" placeholder="e.g. 450" class="num-format" required></div>
             </div>
-            <div class="row-2">
-              <div class="field">
-                <label for="project_type">Project Type</label>
-                <select id="project_type" name="project_type">
-                  <option value="" disabled selected>Select type</option>
-                  <option>Brand New Site</option>
-                  <option>Local Growth</option>
-                  <option>Group Rollout</option>
-                  <option>Buy &amp; Rebrand</option>
-                  <option>Managed Contract</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="geo_profile">Geolocation Profile</label>
-                <select id="geo_profile" name="geo_profile">
-                  <option value="" disabled selected>Select profile</option>
-                  <option>Urban Prime</option>
-                  <option>Urban Secondary</option>
-                  <option>Beach Resort</option>
-                  <option>Suburban Neighbourhood</option>
-                  <option>Rural Destination</option>
-                </select>
-              </div>
-            </div>
-            <div class="row-2">
-              <div class="field">
-                <label for="building_state">Building State</label>
-                <select id="building_state" name="building_state">
-                  <option value="" disabled selected>Select state</option>
-                  <option>New Build</option>
-                  <option>Refurbished</option>
-                  <option>Takeover</option>
-                  <option>Second Occupancy</option>
-                  <option>Heritage</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="area">Area (m² GIA)</label>
-                <input type="text" inputmode="numeric" id="area" name="area" placeholder="e.g. 450" class="num-format">
-              </div>
-            </div>
+            <div class="field"><label for="avg_spend">Average Spend per Cover</label><input type="text" inputmode="numeric" id="avg_spend" name="avg_spend" placeholder="e.g. 85" class="num-format" required></div>
           </div>
  
           <div class="section-divider"></div>
  
-          <!-- FINANCIAL INPUTS -->
           <div class="field-group">
-            <div class="section-label">Financial Inputs</div>
+            <div class="section-label">C. Investment Assumptions</div>
             <div class="row-2">
-              <div class="field">
-                <label for="rent">Annual Rent (£)</label>
-                <input type="text" inputmode="numeric" id="rent" name="rent" placeholder="e.g. 250,000" class="num-format">
-              </div>
-              <div class="field">
-                <label for="avg_spend">Avg. Spend per Cover (£)</label>
-                <input type="text" inputmode="numeric" id="avg_spend" name="avg_spend" placeholder="e.g. 85" class="num-format">
-              </div>
-            </div>
-            <div class="row-2">
-              <div class="field">
-                <label for="capex">Total Capex (£)</label>
-                <input type="text" inputmode="numeric" id="capex" name="capex" placeholder="e.g. 3,000,000" class="num-format">
-              </div>
-              <div class="field">
-                <label for="financing_amount">Financing Amount (£)</label>
-                <input type="text" inputmode="numeric" id="financing_amount" name="financing_amount" placeholder="e.g. 1,500,000" class="num-format">
-              </div>
+              <div class="field"><label for="capex">Total Capex</label><input type="text" inputmode="numeric" id="capex" name="capex" placeholder="e.g. 3,000,000" class="num-format"></div>
+              <div class="field"><label for="financing_amount">Financing Amount</label><input type="text" inputmode="numeric" id="financing_amount" name="financing_amount" placeholder="e.g. 1,500,000" class="num-format"></div>
             </div>
             <div class="row-3">
-              <div class="field">
-                <label for="financing_term">Financing Term (yrs)</label>
-                <input type="text" inputmode="numeric" id="financing_term" name="financing_term" placeholder="e.g. 7">
-              </div>
-              <div class="field">
-                <label for="lease_period">Lease Period (yrs)</label>
-                <input type="text" inputmode="numeric" id="lease_period" name="lease_period" placeholder="e.g. 15">
-              </div>
-              <div class="field">
-                <label for="escalation">Escalation Rate</label>
-                <div class="input-suffix">
-                  <input type="text" inputmode="decimal" id="escalation" name="escalation" placeholder="e.g. 5.0" class="pct-format">
-                  <span class="suffix">%</span>
-                </div>
-              </div>
+              <div class="field"><label for="financing_term">Financing Term (yrs)</label><input type="text" inputmode="numeric" id="financing_term" name="financing_term" placeholder="e.g. 7"></div>
+              <div class="field"><label for="lease_period">Lease Period (yrs)</label><input type="text" inputmode="numeric" id="lease_period" name="lease_period" placeholder="e.g. 15"></div>
+              <div class="field"><label for="escalation">Escalation Rate</label><div class="input-suffix"><input type="text" inputmode="decimal" id="escalation" name="escalation" placeholder="e.g. 5.0" class="pct-format"><span class="suffix">%</span></div></div>
             </div>
             <div class="row-2">
-              <div class="field">
-                <label for="interest_rate">Interest Rate</label>
-                <div class="input-suffix">
-                  <input type="text" inputmode="decimal" id="interest_rate" name="interest_rate" placeholder="e.g. 5.0" class="pct-format">
-                  <span class="suffix">%</span>
-                </div>
-              </div>
+              <div class="field"><label for="interest_rate">Interest Rate</label><div class="input-suffix"><input type="text" inputmode="decimal" id="interest_rate" name="interest_rate" placeholder="e.g. 5.0" class="pct-format"><span class="suffix">%</span></div></div>
             </div>
           </div>
  
           <div class="section-divider"></div>
  
-          <!-- NOTES -->
           <div class="field-group" style="margin-bottom:0.5rem">
             <div class="section-label">Additional Notes</div>
-            <div class="field">
-              <textarea id="message" name="message" placeholder="Any additional context about the project, timeline, or specific requirements…"></textarea>
-            </div>
+            <div class="field"><textarea id="notes" name="notes" placeholder="Any additional context about the project, timeline, or specific requirements…"></textarea></div>
           </div>
  
           <div class="submit-row">
             <p class="submit-note">We respond within 1 business day.<br><a href="mailto:hello@matiinsights.com">hello@matiinsights.com</a></p>
             <button type="submit" id="submit-btn">Submit Enquiry</button>
           </div>
- 
         </form>
  
         <div class="success-msg" id="success-msg">
@@ -508,15 +176,12 @@
   <footer>© 2026 Mati Insights &nbsp;·&nbsp; All rights reserved</footer>
  
 <script>
-  // Comma formatting — £ fields
   document.querySelectorAll('.num-format').forEach(function(input) {
     input.addEventListener('input', function() {
       var raw = this.value.replace(/[^0-9]/g, '');
       this.value = raw === '' ? '' : parseInt(raw, 10).toLocaleString('en-GB');
     });
   });
- 
-  // Percentage fields — allow decimals only
   document.querySelectorAll('.pct-format').forEach(function(input) {
     input.addEventListener('input', function() {
       var raw = this.value.replace(/[^0-9.]/g, '');
@@ -526,27 +191,46 @@
     });
   });
  
-  // Form submit
-  const form    = document.getElementById('enquiry-form');
-  const success = document.getElementById('success-msg');
-  const btn     = document.getElementById('submit-btn');
+  var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzoEOxVgkTVW8tCuYbb8tLGKaAopHmxwxF7WkKCMxr_0egJuSpu24Z-RO3izdGmfV2Emg/exec";
+  var form = document.getElementById('enquiry-form');
+  var success = document.getElementById('success-msg');
+  var btn = document.getElementById('submit-btn');
  
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
     btn.textContent = 'Sending…';
     btn.disabled = true;
+    var payload = {
+      company:          document.getElementById('company').value,
+      name:             document.getElementById('name').value,
+      email:            document.getElementById('email').value,
+      phone:            document.getElementById('phone').value,
+      currency:         document.getElementById('currency').value,
+      city:             document.getElementById('city').value,
+      concept:          document.getElementById('concept').value,
+      project_type:     document.getElementById('project_type').value,
+      geo_profile:      document.getElementById('geo_profile').value,
+      building_state:   document.getElementById('building_state').value,
+      rent:             document.getElementById('rent').value,
+      area:             document.getElementById('area').value,
+      avg_spend:        document.getElementById('avg_spend').value,
+      capex:            document.getElementById('capex').value,
+      financing_amount: document.getElementById('financing_amount').value,
+      financing_term:   document.getElementById('financing_term').value,
+      escalation:       document.getElementById('escalation').value,
+      lease_period:     document.getElementById('lease_period').value,
+      interest_rate:    document.getElementById('interest_rate').value,
+      notes:            document.getElementById('notes').value
+    };
     try {
-      const response = await fetch(form.action, {
+      await fetch(SCRIPT_URL, {
         method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
       });
-      if (response.ok) {
-        form.style.display = 'none';
-        success.style.display = 'block';
-      } else {
-        throw new Error();
-      }
+      form.style.display = 'none';
+      success.style.display = 'block';
     } catch {
       btn.textContent = 'Submit Enquiry';
       btn.disabled = false;
@@ -556,3 +240,4 @@
 </script>
 </body>
 </html>
+ 
