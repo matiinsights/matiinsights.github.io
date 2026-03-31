@@ -1,1 +1,1126 @@
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mati Insights | Commercial Hurdle Screen</title>
+  <style>
+    :root {
+      --navy: #152640;
+      --gold: #C9952A;
+      --teal: #0D7377;
+      --cream: #F7F4EE;
+      --white: #FFFFFF;
+
+      --green: #2F7D57;
+      --amber: #B9851C;
+      --red: #B13B3B;
+
+      --text: #152640;
+      --text-soft: rgba(21, 38, 64, 0.74);
+      --line: rgba(21, 38, 64, 0.11);
+      --shadow: 0 12px 36px rgba(21, 38, 64, 0.08);
+
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--cream);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      line-height: 1.45;
+    }
+
+    .page {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 28px 18px 56px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      font-size: 12px;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--gold);
+    }
+
+    .hero {
+      padding: 8px 0 28px;
+    }
+
+    .hero-kicker {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      max-width: 900px;
+    }
+
+    .hero-sub {
+      margin: 16px 0 0;
+      max-width: 780px;
+      font-size: 18px;
+      color: var(--text-soft);
+    }
+
+    .hero-note {
+      margin-top: 16px;
+      display: inline-block;
+      padding: 12px 14px;
+      border-left: 3px solid var(--gold);
+      background: rgba(255,255,255,0.55);
+      border-radius: 0 12px 12px 0;
+      font-size: 14px;
+      color: var(--navy);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1.12fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .card-inner {
+      padding: 24px;
+    }
+
+    .section-label {
+      margin: 0 0 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .section-title {
+      margin: 0 0 8px;
+      font-size: 24px;
+      line-height: 1.15;
+    }
+
+    .section-copy {
+      margin: 0 0 18px;
+      color: var(--text-soft);
+      font-size: 15px;
+    }
+
+    .input-grid,
+    .lead-grid,
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      color: var(--navy);
+      background: #fff;
+      border: 1px solid rgba(21, 38, 64, 0.16);
+      border-radius: 12px;
+      padding: 13px 14px;
+      outline: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(13, 115, 119, 0.11);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .small-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .small-note strong {
+      color: var(--navy);
+    }
+
+    details {
+      margin-top: 16px;
+      border: 1px dashed rgba(21, 38, 64, 0.16);
+      border-radius: 16px;
+      background: rgba(247, 244, 238, 0.55);
+      overflow: hidden;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .details-inner {
+      padding: 0 16px 16px;
+    }
+
+    .signal-shell {
+      display: grid;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .signal-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      background:
+        linear-gradient(180deg, rgba(247, 244, 238, 0.7), rgba(255,255,255,1)),
+        #fff;
+    }
+
+    .signal-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 8px;
+    }
+
+    .signal-value {
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .signal-copy {
+      font-size: 14px;
+      color: var(--text-soft);
+      max-width: 420px;
+    }
+
+    .zone-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .zone {
+      padding: 11px 10px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      opacity: 0.42;
+      transition: 0.18s ease;
+    }
+
+    .zone.active {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .zone.proceed {
+      background: rgba(47, 125, 87, 0.11);
+      color: var(--green);
+      border-color: rgba(47, 125, 87, 0.18);
+    }
+
+    .zone.investigate {
+      background: rgba(201, 149, 42, 0.11);
+      color: var(--amber);
+      border-color: rgba(201, 149, 42, 0.18);
+    }
+
+    .zone.caution {
+      background: rgba(177, 59, 59, 0.11);
+      color: var(--red);
+      border-color: rgba(177, 59, 59, 0.18);
+    }
+
+    .driver-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      background: #fff;
+    }
+
+    .driver-heading {
+      margin: 0 0 12px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    .driver-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .driver-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 12px;
+      border-radius: 12px;
+      background: rgba(247, 244, 238, 0.75);
+      font-size: 14px;
+    }
+
+    .driver-name {
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .driver-status {
+      white-space: nowrap;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+
+    .driver-status.proceed {
+      background: rgba(47, 125, 87, 0.11);
+      color: var(--green);
+      border-color: rgba(47, 125, 87, 0.16);
+    }
+
+    .driver-status.investigate {
+      background: rgba(201, 149, 42, 0.11);
+      color: var(--amber);
+      border-color: rgba(201, 149, 42, 0.16);
+    }
+
+    .driver-status.caution {
+      background: rgba(177, 59, 59, 0.11);
+      color: var(--red);
+      border-color: rgba(177, 59, 59, 0.16);
+    }
+
+    .metric-grid {
+      margin-top: 4px;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      background: #fff;
+    }
+
+    .metric-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 8px;
+    }
+
+    .metric-value {
+      font-size: clamp(24px, 3.2vw, 36px);
+      line-height: 1.08;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--navy);
+    }
+
+    .metric-note {
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--line);
+      margin: 18px 0;
+    }
+
+    .info-block h3,
+    .tier1-block h3,
+    .lead-block h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .info-block p,
+    .tier1-block p,
+    .lead-block p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 15px;
+    }
+
+    .tier1-block {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(13, 115, 119, 0.08);
+      border: 1px solid rgba(13, 115, 119, 0.14);
+    }
+
+    .lead-block {
+      margin-top: 24px;
+    }
+
+    .button-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    button {
+      appearance: none;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: Arial, sans-serif;
+      cursor: pointer;
+      transition: transform 0.16s ease, background 0.16s ease, opacity 0.16s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: #101d31;
+    }
+
+    .btn-secondary {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .btn-secondary:hover {
+      background: #b88924;
+    }
+
+    .status-text {
+      font-size: 14px;
+      color: var(--navy);
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .basis-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 9px 11px;
+      border-radius: 999px;
+      background: rgba(21, 38, 64, 0.06);
+      font-size: 12px;
+      color: var(--navy);
+    }
+
+    .basis-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--teal);
+    }
+
+    @media (max-width: 980px) {
+      .layout,
+      .signal-shell {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        padding: 18px 14px 42px;
+      }
+
+      .card-inner {
+        padding: 18px;
+      }
+
+      .input-grid,
+      .lead-grid,
+      .metric-grid,
+      .zone-row {
+        grid-template-columns: 1fr;
+      }
+
+      .signal-value {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <div class="brand"><span class="brand-dot"></span>Mati Insights</div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-kicker">Commercial hurdle screen</div>
+      <h1>Test the commercial pressure of your site in 30 seconds</h1>
+      <p class="hero-sub">
+        A directional screen showing what your rent and capex structure would require from the site.
+        No market comparison. No false precision.
+      </p>
+      <div class="hero-note">
+        This is not a feasibility report. It is a first screen based on your own numbers.
+      </div>
+    </section>
+
+    <section class="layout">
+      <div class="card">
+        <div class="card-inner">
+          <div class="section-label">Inputs</div>
+          <h2 class="section-title">Project details</h2>
+          <p class="section-copy">
+            Enter the core figures below. The screen updates instantly and quietly builds a Tier 1 starter brief in the background.
+          </p>
+
+          <form id="screenForm" novalidate>
+            <div class="input-grid">
+              <div class="field">
+                <label for="annualRent">Annual Rent (£)</label>
+                <input id="annualRent" name="annualRent" type="number" min="0" step="1000" value="180000" />
+              </div>
+
+              <div class="field">
+                <label for="avgSpend">Average Spend per Cover (£)</label>
+                <input id="avgSpend" name="avgSpend" type="number" min="0" step="1" value="28" />
+              </div>
+
+              <div class="field">
+                <label for="areaM2">Area (m²)</label>
+                <input id="areaM2" name="areaM2" type="number" min="1" step="1" value="220" />
+              </div>
+
+              <div class="field">
+                <label for="capex">Capex (£)</label>
+                <input id="capex" name="capex" type="number" min="0" step="5000" value="450000" />
+              </div>
+
+              <div class="field">
+                <label for="city">City</label>
+                <select id="city" name="city">
+                  <option>London</option>
+                  <option>Lisbon</option>
+                  <option>Athens</option>
+                  <option>Mykonos</option>
+                  <option>Madrid</option>
+                  <option>Paris</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="conceptType">Concept Type</label>
+                <select id="conceptType" name="conceptType">
+                  <option>Coffee Shop</option>
+                  <option>Fast Food</option>
+                  <option>Bar-Nightclub</option>
+                  <option selected>Independent Restaurant</option>
+                  <option>High End Destination</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="small-note">
+              <strong>Important:</strong> city and concept type are captured for Tier 1 preparation, but they do not drive the free signal on this page.
+            </div>
+
+            <details>
+              <summary>Add project details</summary>
+              <div class="details-inner">
+                <div class="input-grid">
+                  <div class="field">
+                    <label for="leaseTerm">Lease Term (years)</label>
+                    <input id="leaseTerm" name="leaseTerm" type="number" min="0" step="1" placeholder="e.g. 10" />
+                  </div>
+
+                  <div class="field">
+                    <label for="buildingState">Building State</label>
+                    <select id="buildingState" name="buildingState">
+                      <option value="">Select</option>
+                      <option>New Build</option>
+                      <option>Refurbished</option>
+                      <option>Takeover</option>
+                      <option>Second Occupancy</option>
+                      <option>Heritage</option>
+                    </select>
+                  </div>
+
+                  <div class="field full">
+                    <label for="siteLocation">Site Location</label>
+                    <input id="siteLocation" name="siteLocation" type="text" placeholder="Address / postcode / area" />
+                  </div>
+
+                  <div class="field">
+                    <label for="openingDate">Target Opening Date</label>
+                    <input id="openingDate" name="openingDate" type="date" />
+                  </div>
+
+                  <div class="field">
+                    <label for="indoorType">Space Type</label>
+                    <select id="indoorType" name="indoorType">
+                      <option value="">Select</option>
+                      <option>Indoor</option>
+                      <option>Indoor + Terrace</option>
+                    </select>
+                  </div>
+
+                  <div class="field full">
+                    <label for="projectNotes">Notes</label>
+                    <textarea id="projectNotes" name="projectNotes" placeholder="Anything useful for the Tier 1 starter brief..."></textarea>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <div class="basis-badge">
+              <span class="basis-dot"></span>
+              Internal basis used here: <strong>10% rent ratio target</strong> and <strong>365-day screen</strong>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="section-label">Live screen</div>
+          <h2 class="section-title">Directional signal only</h2>
+          <p class="section-copy">
+            This screen shows what your current structure would need to achieve. It does not tell you whether the market will support it.
+          </p>
+
+          <div class="signal-shell">
+            <div class="signal-panel">
+              <div class="signal-title">Commercial pressure signal</div>
+              <div class="signal-value" id="overallSignal">Investigate</div>
+              <div class="signal-copy" id="overallCopy">
+                Mixed internal pressure. The structure may be workable, but the hurdle needs closer testing.
+              </div>
+
+              <div class="zone-row">
+                <div class="zone proceed" id="zoneProceed">Proceed</div>
+                <div class="zone investigate" id="zoneInvestigate">Investigate</div>
+                <div class="zone caution" id="zoneCaution">Caution</div>
+              </div>
+            </div>
+
+            <div class="driver-panel">
+              <div class="driver-heading">Signal drivers</div>
+              <div class="driver-stack">
+                <div class="driver-item">
+                  <div class="driver-name">Rent pressure</div>
+                  <div class="driver-status investigate" id="rentPressureTag">Investigate</div>
+                </div>
+                <div class="driver-item">
+                  <div class="driver-name">Sales density</div>
+                  <div class="driver-status investigate" id="salesDensityTag">Investigate</div>
+                </div>
+                <div class="driver-item">
+                  <div class="driver-name">Capital intensity</div>
+                  <div class="driver-status investigate" id="capitalIntensityTag">Investigate</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric">
+              <div class="metric-kicker">Revenue required</div>
+              <div class="metric-value" id="requiredRevenue">£0</div>
+              <div class="metric-note">For rent to sit within a basic internal range.</div>
+            </div>
+
+            <div class="metric">
+              <div class="metric-kicker">Covers required per day</div>
+              <div class="metric-value" id="requiredDailyCovers">0</div>
+              <div class="metric-note">Based on your average spend.</div>
+            </div>
+
+            <div class="metric">
+              <div class="metric-kicker">Revenue required per m²</div>
+              <div class="metric-value" id="requiredRevenuePerM2">£0</div>
+              <div class="metric-note">Sales density implied by the site structure.</div>
+            </div>
+
+            <div class="metric">
+              <div class="metric-kicker">Covers needed just for rent</div>
+              <div class="metric-value" id="rentOnlyCovers">0</div>
+              <div class="metric-note">Before payroll, operating costs, and return on capital.</div>
+            </div>
+
+            <div class="metric">
+              <div class="metric-kicker">Capex intensity</div>
+              <div class="metric-value" id="capexPerM2">£0</div>
+              <div class="metric-note">Upfront investment per m².</div>
+            </div>
+
+            <div class="metric">
+              <div class="metric-kicker">Occupancy cost density</div>
+              <div class="metric-value" id="rentPerM2">£0</div>
+              <div class="metric-note">Annual rent per m².</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="info-block">
+            <h3>What this means</h3>
+            <p>
+              Your current property and investment structure implies a required level of revenue and daily volume.
+              This is a directional screen only. It does not yet test local demand, payroll structure, operating costs,
+              seasonality, or benchmark comparisons.
+            </p>
+          </div>
+
+          <div class="tier1-block">
+            <h3>See whether those numbers are actually realistic</h3>
+            <p>
+              This free screen shows the hurdle created by your own inputs. The Mati Tier 1 report tests whether that hurdle stands up once cost structure, benchmark logic, and site-level commercial pressure are reviewed properly.
+            </p>
+          </div>
+
+          <div class="lead-block">
+            <h3>Get your full Mati Tier 1 report</h3>
+            <p>
+              Your submitted details and screening inputs will be used to pre-populate your initial Mati Tier 1 brief.
+            </p>
+
+            <form id="leadForm" novalidate>
+              <div class="lead-grid" style="margin-top:16px;">
+                <div class="field">
+                  <label for="leadName">Name</label>
+                  <input id="leadName" name="leadName" type="text" placeholder="Your name" required />
+                </div>
+
+                <div class="field">
+                  <label for="leadEmail">Email</label>
+                  <input id="leadEmail" name="leadEmail" type="email" placeholder="you@example.com" required />
+                </div>
+
+                <div class="field">
+                  <label for="leadPhone">Phone</label>
+                  <input id="leadPhone" name="leadPhone" type="tel" placeholder="+44..." />
+                </div>
+
+                <div class="field">
+                  <label for="leadCompany">Company / Brand</label>
+                  <input id="leadCompany" name="leadCompany" type="text" placeholder="Company or concept name" />
+                </div>
+
+                <div class="field full">
+                  <label for="leadLocation">Site Location</label>
+                  <input id="leadLocation" name="leadLocation" type="text" placeholder="Optional if not already added above" />
+                </div>
+
+                <div class="field full">
+                  <label for="leadNotes">Notes</label>
+                  <textarea id="leadNotes" name="leadNotes" placeholder="Anything else you want included before Tier 1..."></textarea>
+                </div>
+
+                <input type="hidden" id="payloadField" name="payloadField" />
+              </div>
+
+              <div class="button-row">
+                <button type="submit" class="btn-secondary">Get your full Mati Tier 1 report</button>
+                <span class="status-text" id="formStatus">Ready to capture.</span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      Directional screen only. No external benchmarks are used at this stage. The screen shows what the structure would need to achieve, not whether the market will support it.
+    </div>
+  </div>
+
+  <script>
+    const MATI_SUBMIT_URL = "";
+    const CONFIG = {
+      targetRentRatio: 0.10,
+      tradingDays: 365,
+      thresholds: {
+        rentOnlyCoversPerDay: { proceed: 18, investigate: 32 },
+        requiredRevenuePerM2: { proceed: 4500, investigate: 7500 },
+        capexPerM2: { proceed: 1500, investigate: 2800 }
+      }
+    };
+
+    const screenForm = document.getElementById("screenForm");
+    const leadForm = document.getElementById("leadForm");
+
+    const el = {
+      requiredRevenue: document.getElementById("requiredRevenue"),
+      requiredDailyCovers: document.getElementById("requiredDailyCovers"),
+      requiredRevenuePerM2: document.getElementById("requiredRevenuePerM2"),
+      rentOnlyCovers: document.getElementById("rentOnlyCovers"),
+      capexPerM2: document.getElementById("capexPerM2"),
+      rentPerM2: document.getElementById("rentPerM2"),
+
+      overallSignal: document.getElementById("overallSignal"),
+      overallCopy: document.getElementById("overallCopy"),
+
+      zoneProceed: document.getElementById("zoneProceed"),
+      zoneInvestigate: document.getElementById("zoneInvestigate"),
+      zoneCaution: document.getElementById("zoneCaution"),
+
+      rentPressureTag: document.getElementById("rentPressureTag"),
+      salesDensityTag: document.getElementById("salesDensityTag"),
+      capitalIntensityTag: document.getElementById("capitalIntensityTag"),
+
+      payloadField: document.getElementById("payloadField"),
+      formStatus: document.getElementById("formStatus")
+    };
+
+    function num(v) {
+      const n = Number(v);
+      return Number.isFinite(n) ? n : 0;
+    }
+
+    function safeDiv(a, b) {
+      return b > 0 ? a / b : 0;
+    }
+
+    function gbp(value, decimals = 0) {
+      return new Intl.NumberFormat("en-GB", {
+        style: "currency",
+        currency: "GBP",
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      }).format(value || 0);
+    }
+
+    function fmt(value, decimals = 1) {
+      return new Intl.NumberFormat("en-GB", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      }).format(value || 0);
+    }
+
+    function classifyLowBetter(value, band) {
+      if (value <= band.proceed) return "Proceed";
+      if (value <= band.investigate) return "Investigate";
+      return "Caution";
+    }
+
+    function overallZone(arr) {
+      const proceed = arr.filter(x => x === "Proceed").length;
+      const caution = arr.filter(x => x === "Caution").length;
+
+      if (caution >= 2) return "Caution";
+      if (proceed >= 2 && caution === 0) return "Proceed";
+      return "Investigate";
+    }
+
+    function zoneCopy(zone) {
+      if (zone === "Proceed") {
+        return "Lighter internal pressure. The structure looks relatively controlled on this first screen, but still needs Tier 1 testing.";
+      }
+      if (zone === "Caution") {
+        return "Stacked internal pressure. The structure implies a heavy trading and investment hurdle that needs careful review.";
+      }
+      return "Mixed internal pressure. The structure may be workable, but the hurdle needs closer testing.";
+    }
+
+    function statusClass(zone) {
+      return zone.toLowerCase();
+    }
+
+    function setTag(node, zone) {
+      node.textContent = zone;
+      node.className = "driver-status " + statusClass(zone);
+    }
+
+    function readInputs() {
+      return {
+        annualRent: num(document.getElementById("annualRent").value),
+        avgSpend: num(document.getElementById("avgSpend").value),
+        areaM2: Math.max(num(document.getElementById("areaM2").value), 1),
+        capex: num(document.getElementById("capex").value),
+        city: document.getElementById("city").value,
+        conceptType: document.getElementById("conceptType").value,
+        leaseTerm: document.getElementById("leaseTerm").value,
+        buildingState: document.getElementById("buildingState").value,
+        siteLocation: document.getElementById("siteLocation").value,
+        openingDate: document.getElementById("openingDate").value,
+        indoorType: document.getElementById("indoorType").value,
+        projectNotes: document.getElementById("projectNotes").value
+      };
+    }
+
+    function calculate(inputs) {
+      const requiredAnnualRevenue = safeDiv(inputs.annualRent, CONFIG.targetRentRatio);
+      const requiredDailyCovers = safeDiv(requiredAnnualRevenue, inputs.avgSpend) / CONFIG.tradingDays;
+      const requiredRevenuePerM2 = safeDiv(requiredAnnualRevenue, inputs.areaM2);
+      const rentOnlyCoversPerDay = safeDiv(inputs.annualRent, inputs.avgSpend) / CONFIG.tradingDays;
+      const capexPerM2 = safeDiv(inputs.capex, inputs.areaM2);
+      const rentPerM2 = safeDiv(inputs.annualRent, inputs.areaM2);
+
+      const rentPressure = classifyLowBetter(rentOnlyCoversPerDay, CONFIG.thresholds.rentOnlyCoversPerDay);
+      const salesDensity = classifyLowBetter(requiredRevenuePerM2, CONFIG.thresholds.requiredRevenuePerM2);
+      const capitalIntensity = classifyLowBetter(capexPerM2, CONFIG.thresholds.capexPerM2);
+
+      const overall = overallZone([rentPressure, salesDensity, capitalIntensity]);
+
+      return {
+        requiredAnnualRevenue,
+        requiredDailyCovers,
+        requiredRevenuePerM2,
+        rentOnlyCoversPerDay,
+        capexPerM2,
+        rentPerM2,
+        rentPressure,
+        salesDensity,
+        capitalIntensity,
+        overall
+      };
+    }
+
+    function getUTM() {
+      const p = new URLSearchParams(window.location.search);
+      return {
+        utm_source: p.get("utm_source") || "",
+        utm_medium: p.get("utm_medium") || "",
+        utm_campaign: p.get("utm_campaign") || "",
+        utm_term: p.get("utm_term") || "",
+        utm_content: p.get("utm_content") || ""
+      };
+    }
+
+    function buildPayload() {
+      const inputs = readInputs();
+      const outputs = calculate(inputs);
+
+      return {
+        timestamp: new Date().toISOString(),
+        source_page: window.location.href,
+        referrer: document.referrer || "",
+        ...getUTM(),
+
+        free_screen_basis: {
+          target_rent_ratio: CONFIG.targetRentRatio,
+          trading_days_basis: CONFIG.tradingDays,
+          logic_boundary: "internal relationships only; no external market benchmarks"
+        },
+
+        user_inputs: {
+          annual_rent_gbp: inputs.annualRent,
+          avg_spend_per_cover_gbp: inputs.avgSpend,
+          area_m2: inputs.areaM2,
+          capex_gbp: inputs.capex,
+          city: inputs.city,
+          concept_type: inputs.conceptType,
+          lease_term_years: inputs.leaseTerm,
+          building_state: inputs.buildingState,
+          site_location: inputs.siteLocation,
+          target_opening_date: inputs.openingDate,
+          space_type: inputs.indoorType,
+          project_notes: inputs.projectNotes
+        },
+
+        system_outputs: {
+          required_annual_revenue_gbp: outputs.requiredAnnualRevenue,
+          required_daily_covers: outputs.requiredDailyCovers,
+          required_revenue_per_m2_gbp: outputs.requiredRevenuePerM2,
+          rent_only_covers_per_day: outputs.rentOnlyCoversPerDay,
+          capex_per_m2_gbp: outputs.capexPerM2,
+          annual_rent_per_m2_gbp: outputs.rentPerM2,
+          rent_pressure_zone: outputs.rentPressure,
+          sales_density_zone: outputs.salesDensity,
+          capital_intensity_zone: outputs.capitalIntensity,
+          overall_zone: outputs.overall
+        }
+      };
+    }
+
+    function updateUI() {
+      const inputs = readInputs();
+      const output = calculate(inputs);
+
+      el.requiredRevenue.textContent = gbp(output.requiredAnnualRevenue);
+      el.requiredDailyCovers.textContent = fmt(output.requiredDailyCovers, 1);
+      el.requiredRevenuePerM2.textContent = gbp(output.requiredRevenuePerM2);
+      el.rentOnlyCovers.textContent = fmt(output.rentOnlyCoversPerDay, 1);
+      el.capexPerM2.textContent = gbp(output.capexPerM2);
+      el.rentPerM2.textContent = gbp(output.rentPerM2);
+
+      el.overallSignal.textContent = output.overall;
+      el.overallCopy.textContent = zoneCopy(output.overall);
+
+      el.zoneProceed.classList.toggle("active", output.overall === "Proceed");
+      el.zoneInvestigate.classList.toggle("active", output.overall === "Investigate");
+      el.zoneCaution.classList.toggle("active", output.overall === "Caution");
+
+      setTag(el.rentPressureTag, output.rentPressure);
+      setTag(el.salesDensityTag, output.salesDensity);
+      setTag(el.capitalIntensityTag, output.capitalIntensity);
+
+      const payload = buildPayload();
+      el.payloadField.value = JSON.stringify(payload, null, 2);
+      localStorage.setItem("mati_free_screen_draft", JSON.stringify(payload));
+    }
+
+    screenForm.addEventListener("input", updateUI);
+    screenForm.addEventListener("change", updateUI);
+
+    leadForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const lead = {
+        name: document.getElementById("leadName").value.trim(),
+        email: document.getElementById("leadEmail").value.trim(),
+        phone: document.getElementById("leadPhone").value.trim(),
+        company: document.getElementById("leadCompany").value.trim(),
+        site_location_secondary: document.getElementById("leadLocation").value.trim(),
+        notes: document.getElementById("leadNotes").value.trim()
+      };
+
+      if (!lead.name || !lead.email) {
+        el.formStatus.textContent = "Please add at least name and email.";
+        return;
+      }
+
+      const submission = buildPayload();
+      submission.lead_details = lead;
+
+      try {
+        localStorage.setItem("mati_free_screen_submission", JSON.stringify(submission));
+
+        if (MATI_SUBMIT_URL) {
+          const res = await fetch(MATI_SUBMIT_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(submission)
+          });
+
+          if (!res.ok) {
+            throw new Error("Submission failed");
+          }
+
+          el.formStatus.textContent = "Captured successfully. The Tier 1 starter brief is ready.";
+        } else {
+          console.log("Mati submission payload:", submission);
+          el.formStatus.textContent = "Draft captured. Connect a live endpoint to send this straight into the Tier 1 workflow.";
+        }
+      } catch (err) {
+        console.error(err);
+        el.formStatus.textContent = "There was a problem sending the form. The draft payload has still been stored locally.";
+      }
+    });
+
+    updateUI();
+  </script>
+</body>
+</html>
+'''
+
+path = Path("/mnt/data/heatmap.html")
+path.write_text(html, encoding="utf-8")
+print(f"Wrote {path}")
 
