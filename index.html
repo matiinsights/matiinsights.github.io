@@ -537,15 +537,15 @@
           </div>
           <div class="art-field">
             <label id="lbl_rent" for="artRent">Annual Rent (£)</label>
-            <input id="artRent" type="number" min="0" step="1000" value="350000" />
+            <input id="artRent" type="text" inputmode="numeric" placeholder="e.g. 350,000" class="art-num-format" />
           </div>
           <div class="art-field">
             <label for="artArea">Site Area (m²)</label>
-            <input id="artArea" type="number" min="1" step="1" value="650" />
+            <input id="artArea" type="text" inputmode="numeric" placeholder="e.g. 650" />
           </div>
           <div class="art-field" style="grid-column:1/-1">
             <label id="lbl_spend" for="artSpend">Avg Spend / Cover (£)</label>
-            <input id="artSpend" type="number" min="0" step="1" value="95" />
+            <input id="artSpend" type="text" inputmode="numeric" placeholder="e.g. 95" class="art-num-format" />
           </div>
         </div>
         <div class="art-basis">Screen basis: annual rent = 10% of required net sales</div>
@@ -1050,7 +1050,13 @@ form.addEventListener('submit', async function(e) {
   }
 });
  
-// Initial render
+// Format artifact number inputs with thousand separators
+document.querySelectorAll('.art-num-format').forEach(function(input) {
+  input.addEventListener('input', function() {
+    var raw = this.value.replace(/[^0-9]/g, '');
+    this.value = raw === '' ? '' : parseInt(raw, 10).toLocaleString('en-GB');
+  });
+});
 render();
 </script>
 </body>
