@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mati Insights</title>
   <style>
-    /* ══════════════════════════════════════
-       GLOBAL / SHARED
-       ══════════════════════════════════════ */
     :root {
       --navy:        #1B3A5C;
       --navy-dark:   #152640;
@@ -35,10 +32,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { background: var(--bg-hero); color: var(--text); font-family: Arial, Helvetica, sans-serif; font-weight: 400; min-height: 100vh; overflow-x: hidden; }
- 
-    /* ══════════════════════════════════════
-       HERO
-       ══════════════════════════════════════ */
+
+    /* ── HERO ── */
     .hero { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 5.5rem 2rem 3.5rem; background: var(--bg-hero); animation: fadeDown 0.7s ease both; }
     .hero img { width: 130px; height: auto; margin-bottom: 2.25rem; }
     .hero h1 { font-weight: 700; font-size: clamp(2.8rem, 6vw, 4rem); color: var(--navy); letter-spacing: 0.04em; line-height: 1.1; margin-bottom: 0.65rem; }
@@ -48,245 +43,76 @@
     .scroll-hint span { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
     .scroll-hint svg { animation: bounce 2s ease infinite; }
     @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
- 
     .rule { width: calc(100% - 4rem); max-width: 680px; margin: 0 auto; height: 1px; background: linear-gradient(to right, transparent, var(--gold-light), transparent); }
- 
-    /* ══════════════════════════════════════
-       ARTIFACT SECTION
-       ══════════════════════════════════════ */
-    .artifact-intro {
-      text-align: center;
-      padding: 3rem 2rem 0.5rem;
-      max-width: 640px;
-      margin: 0 auto;
-    }
-    .artifact-intro .eyebrow {
-      font-size: 0.67rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-    }
-    .artifact-intro h2 {
-      font-weight: 700;
-      font-size: 1.8rem;
-      color: var(--navy);
-      letter-spacing: 0.02em;
-      margin-bottom: 0.6rem;
-    }
-    .artifact-intro p {
-      font-size: 0.92rem;
-      color: var(--text-mid);
-      line-height: 1.6;
-    }
- 
+
+    /* ── ARTIFACT INTRO ── */
+    .artifact-intro { text-align: center; padding: 3rem 2rem 0.5rem; max-width: 640px; margin: 0 auto; }
+    .artifact-intro .eyebrow { font-size: 0.67rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .artifact-intro h2 { font-weight: 700; font-size: 1.8rem; color: var(--navy); letter-spacing: 0.02em; margin-bottom: 0.6rem; }
+    .artifact-intro p { font-size: 0.92rem; color: var(--text-mid); line-height: 1.6; }
+
     /* ── ARTIFACT HERO BAR ── */
-    .art-hero {
-      background: var(--navy-dark);
-      padding: 24px 24px 28px;
-      margin-top: 1.5rem;
-    }
-    .art-hero-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .art-brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 14px;
-    }
+    .art-hero { background: var(--navy-dark); padding: 24px 24px 28px; margin-top: 1.5rem; }
+    .art-hero-inner { max-width: 1200px; margin: 0 auto; }
+    .art-brand { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
     .art-brand-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
-    .art-hero h3 {
-      font-size: clamp(22px, 3vw, 32px);
-      line-height: 1.1;
-      letter-spacing: -.02em;
-      color: var(--white);
-      max-width: 600px;
-      margin-bottom: 8px;
-    }
-    .art-hero-sub {
-      font-size: 14px;
-      color: rgba(255,255,255,.50);
-      max-width: 560px;
-      line-height: 1.5;
-    }
-    .art-hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 12px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .06em;
-      color: rgba(255,255,255,.38);
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 999px;
-      padding: 5px 11px;
-    }
+    .art-hero h3 { font-size: clamp(22px, 3vw, 32px); line-height: 1.1; letter-spacing: -.02em; color: var(--white); max-width: 600px; margin-bottom: 8px; }
+    .art-hero-sub { font-size: 14px; color: rgba(255,255,255,.50); max-width: 560px; line-height: 1.5; }
+    .art-hero-badge { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 11px; font-weight: 700; letter-spacing: .06em; color: rgba(255,255,255,.38); border: 1px solid rgba(255,255,255,.10); border-radius: 999px; padding: 5px 11px; }
     .art-hero-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
- 
+
     /* ── ARTIFACT LAYOUT ── */
-    .art-page {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px 24px 32px;
-      background: var(--cream);
-    }
-    .art-layout {
-      display: grid;
-      grid-template-columns: 380px 1fr;
-      gap: 20px;
-      align-items: start;
-    }
- 
-    /* ── ARTIFACT CARDS ── */
-    .art-card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
+    .art-page { max-width: 1200px; margin: 0 auto; padding: 20px 24px 32px; background: var(--cream); }
+    .art-layout { display: grid; grid-template-columns: 380px 1fr; gap: 20px; align-items: start; }
+    .art-card { background: var(--white); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); overflow: hidden; }
     .art-card-pad { padding: 20px 22px; }
- 
-    .art-section-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 10px;
-    }
- 
+    .art-section-label { font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+
     /* ── ARTIFACT INPUTS ── */
-    .art-input-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
+    .art-input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 6px; }
     .art-field { display: flex; flex-direction: column; gap: 4px; }
-    .art-field label {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--navy-dark);
-      letter-spacing: .02em;
-      text-transform: none;
-    }
-    .art-field input, .art-field select {
-      width: 100%;
-      font-family: Arial, sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--navy-dark);
-      background: var(--cream);
-      border: 1.5px solid var(--line);
-      border-radius: 10px;
-      padding: 10px 12px;
-      outline: none;
-      transition: border-color .15s, box-shadow .15s;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-    .art-field select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23C9952A' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 0.9rem center;
-      padding-right: 2.5rem;
-      cursor: pointer;
-    }
-    .art-field input:focus, .art-field select:focus {
-      background: var(--white);
-      border-color: var(--teal);
-      box-shadow: 0 0 0 3px rgba(13,115,119,.08);
-    }
-    .art-basis {
-      font-size: 11px;
-      color: var(--softer);
-      margin: 10px 0 0;
-      padding-top: 10px;
-      border-top: 1px solid var(--line);
-    }
- 
+    .art-field label { font-size: 11px; font-weight: 700; color: var(--navy-dark); letter-spacing: .02em; text-transform: none; }
+    .art-field input, .art-field select { width: 100%; font-family: Arial, sans-serif; font-size: 15px; font-weight: 700; color: var(--navy-dark); background: var(--cream); border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; outline: none; transition: border-color .15s, box-shadow .15s; -webkit-appearance: none; appearance: none; }
+    .art-field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23C9952A' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; cursor: pointer; }
+    .art-field input:focus, .art-field select:focus { background: var(--white); border-color: var(--teal); box-shadow: 0 0 0 3px rgba(13,115,119,.08); }
+    .art-field input::placeholder { color: #B8C4CC; font-weight: 400; }
+    .art-basis { font-size: 11px; color: var(--softer); margin: 10px 0 0; padding-top: 10px; border-top: 1px solid var(--line); }
     .art-sep { height: 1px; background: var(--line); margin: 16px 0; }
- 
+
     /* ── SLIDERS ── */
     .art-slider-wrap { margin-bottom: 8px; }
     .art-slider-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
     .art-slider-label { font-size: 12px; font-weight: 700; color: var(--navy-dark); }
-    .art-slider-val {
-      font-size: 12px; font-weight: 700; color: var(--navy-dark);
-      background: var(--cream); border: 1px solid var(--line);
-      border-radius: 6px; padding: 2px 8px; min-width: 44px; text-align: center;
-    }
+    .art-slider-val { font-size: 12px; font-weight: 700; color: var(--navy-dark); background: var(--cream); border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px; min-width: 44px; text-align: center; }
     .art-slider-val.pos { color: var(--green); border-color: rgba(47,125,87,.18); }
     .art-slider-val.neg { color: var(--red); border-color: rgba(168,50,50,.18); }
- 
-    .art-card input[type="range"] {
-      width: 100%; padding: 0; border: none; box-shadow: none;
-      background: transparent; accent-color: var(--gold); cursor: pointer; height: 18px;
-      border-radius: 0;
-    }
- 
-    /* ── SCROLL CTA BUTTON ── */
-    .art-cta-btn {
-      width: 100%;
-      background: var(--gold);
-      color: var(--white);
-      border: none;
-      border-radius: 10px;
-      padding: 14px 18px;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      letter-spacing: .02em;
-      transition: background .15s, transform .12s;
-      margin-top: 4px;
-    }
+    .art-card input[type="range"] { width: 100%; padding: 0; border: none; box-shadow: none; background: transparent; accent-color: var(--gold); cursor: pointer; height: 18px; border-radius: 0; }
+
+    /* ── SCROLL CTA ── */
+    .art-cta-btn { width: 100%; background: var(--gold); color: var(--white); border: none; border-radius: 10px; padding: 14px 18px; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; letter-spacing: .02em; transition: background .15s, transform .12s; margin-top: 4px; }
     .art-cta-btn:hover { background: #b8862a; transform: translateY(-1px); }
- 
+
     /* ── RIGHT PANEL ── */
     .art-right { display: flex; flex-direction: column; gap: 14px; }
- 
+
     /* ── VERDICT ── */
     .art-verdict-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .art-vc {
-      border-radius: 16px; padding: 18px 20px;
-      border: 1px solid var(--line); position: relative;
-      overflow: hidden; background: var(--white);
-    }
+    .art-vc { border-radius: 16px; padding: 18px 20px; border: 1px solid var(--line); position: relative; overflow: hidden; background: var(--white); }
     .art-vc::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
     .art-vc.v-strong::before { background: var(--green); }
     .art-vc.v-viable::before { background: var(--amber); }
     .art-vc.v-borderline::before { background: var(--red); }
-    .art-vc .vc-tag {
-      font-size: 10px; font-weight: 700; letter-spacing: .14em;
-      text-transform: uppercase; color: var(--softer); margin-bottom: 8px;
-    }
+    .art-vc .vc-tag { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--softer); margin-bottom: 8px; }
     .art-vc.after .vc-tag { color: var(--teal); }
     .art-vc .verdict-word { font-size: 32px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
     .v-strong .verdict-word { color: var(--green); }
     .v-viable .verdict-word { color: var(--amber); }
     .v-borderline .verdict-word { color: var(--red); }
     .art-vc .verdict-sub { font-size: 12px; color: var(--soft); margin-bottom: 6px; }
-    .art-vc .verdict-nudge {
-      font-size: 11px; color: var(--softer); font-style: italic; line-height: 1.4;
-      padding-top: 8px; border-top: 1px solid var(--line); margin-top: 8px;
-    }
+    .art-vc .verdict-nudge { font-size: 11px; color: var(--softer); font-style: italic; line-height: 1.4; padding-top: 8px; border-top: 1px solid var(--line); margin-top: 8px; }
     .vc-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
-    .vc-chip {
-      font-size: 10px; font-weight: 700; letter-spacing: .04em;
-      padding: 4px 8px; border-radius: 6px;
-      background: rgba(21,38,64,.04); color: var(--soft); border: 1px solid var(--line);
-    }
- 
+    .vc-chip { font-size: 10px; font-weight: 700; letter-spacing: .04em; padding: 4px 8px; border-radius: 6px; background: rgba(21,38,64,.04); color: var(--soft); border: 1px solid var(--line); }
+
     /* ── METRICS ── */
     .art-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
     .m-pair { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
@@ -300,108 +126,51 @@
     .m-dir { display:inline-block; font-size:13px; font-weight:700; margin-left:6px; vertical-align:middle; }
     .m-dir.easier { color: var(--green); }
     .m-dir.harder { color: var(--red); }
- 
-    .art-screen-tag {
-      font-size: 9px; font-weight: 700; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--softer); text-align: center; padding: 6px 0 0;
-    }
- 
+    .art-screen-tag { font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--softer); text-align: center; padding: 6px 0 0; }
+
     /* ── FOH STRIP ── */
     .art-foh { display: flex; gap: 10px; flex-wrap: wrap; }
-    .art-foh-item {
-      flex: 1; min-width: 160px; background: var(--white);
-      border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px;
-    }
+    .art-foh-item { flex: 1; min-width: 160px; background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; }
     .art-foh-tag { font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--softer); margin-bottom:4px; }
     .art-foh-row { display:flex; align-items:baseline; gap:10px; }
     .art-foh-num { font-size:20px; font-weight:700; color:var(--navy-dark); }
     .art-foh-delta { font-size:13px; font-weight:700; }
     .art-foh-delta.neutral { color: var(--teal); }
     .art-foh-note { font-size:10px; color:var(--softer); margin-top:3px; line-height:1.35; }
- 
+
     /* ── CTA BLOCK ── */
-    .art-cta-block {
-      background: var(--navy-dark); border-radius: 16px;
-      padding: 24px 26px; position: relative; overflow: hidden;
-    }
-    .art-cta-block::before {
-      content:''; position:absolute; top:0; left:0; width:100%; height:100%;
-      background: linear-gradient(135deg, rgba(201,149,42,.12) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    .art-cta-block .cta-eyebrow {
-      font-size:10px; font-weight:700; letter-spacing:.16em;
-      text-transform:uppercase; color:var(--gold); margin-bottom:10px; position:relative;
-    }
-    .art-cta-block h4 {
-      font-size:17px; font-weight:700; color:var(--white); line-height:1.28;
-      margin-bottom:10px; position:relative; max-width:580px;
-    }
-    .art-cta-block p {
-      font-size:13px; color:rgba(255,255,255,.55); line-height:1.55;
-      position:relative; max-width:580px; margin-bottom:14px;
-    }
-    .cta-grid {
-      display:grid; grid-template-columns:1fr 1fr; gap:6px 16px;
-      position:relative; margin-bottom:4px;
-    }
-    .cta-item {
-      display:flex; align-items:center; gap:8px;
-      font-size:12px; font-weight:700; color:rgba(255,255,255,.70); padding:5px 0;
-    }
+    .art-cta-block { background: var(--navy-dark); border-radius: 16px; padding: 24px 26px; position: relative; overflow: hidden; }
+    .art-cta-block::before { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(135deg, rgba(201,149,42,.12) 0%, transparent 50%); pointer-events: none; }
+    .art-cta-block .cta-eyebrow { font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; position:relative; }
+    .art-cta-block h4 { font-size:17px; font-weight:700; color:var(--white); line-height:1.28; margin-bottom:10px; position:relative; max-width:580px; }
+    .art-cta-block p { font-size:13px; color:rgba(255,255,255,.55); line-height:1.55; position:relative; max-width:580px; margin-bottom:14px; }
+    .cta-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; position:relative; margin-bottom:4px; }
+    .cta-item { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; color:rgba(255,255,255,.70); padding:5px 0; }
     .cta-item::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--gold); flex-shrink:0; }
     .cta-divider { height:1px; background:rgba(255,255,255,.08); margin:10px 0 12px; position:relative; }
     .cta-tier2 { font-size:12px; color:rgba(255,255,255,.38); line-height:1.5; position:relative; }
     .cta-tier2 strong { color:var(--gold); font-weight:700; }
- 
-    /* ══════════════════════════════════════
-       FORM SECTION (TIER 1)
-       ══════════════════════════════════════ */
-    .form-section {
-      background: var(--bg-form);
-      padding: 4rem 1.5rem 5rem;
-    }
+
+    /* ── EMPTY STATE ── */
+    .art-empty { text-align: center; padding: 60px 20px; color: var(--softer); font-size: 14px; line-height: 1.6; }
+    .art-empty strong { color: var(--navy-dark); display: block; font-size: 16px; margin-bottom: 6px; }
+
+    /* ── FORM SECTION ── */
+    .form-section { background: var(--bg-form); padding: 4rem 1.5rem 5rem; }
     .form-inner { max-width: 620px; margin: 0 auto; }
     .form-header { text-align: center; margin-bottom: 2.5rem; }
     .form-header .eyebrow { font-size: 0.67rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
     .form-header h2 { font-weight: 700; font-size: 2rem; color: var(--navy); letter-spacing: 0.02em; margin-bottom: 0.4rem; }
     .form-header p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.55; }
-    .card {
-      background: var(--bg-card); border: 1px solid var(--gold-light);
-      border-top: 3px solid var(--gold); border-radius: 3px;
-      padding: 2.5rem 2.5rem 2.25rem; box-shadow: 0 4px 28px rgba(27,58,92,0.07);
-    }
-    .section-label {
-      font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--gold); padding-bottom: 0.6rem;
-      border-bottom: 1px solid var(--gold-light); margin-bottom: 1.35rem;
-    }
+    .card { background: var(--bg-card); border: 1px solid var(--gold-light); border-top: 3px solid var(--gold); border-radius: 3px; padding: 2.5rem 2.5rem 2.25rem; box-shadow: 0 4px 28px rgba(27,58,92,0.07); }
+    .section-label { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); padding-bottom: 0.6rem; border-bottom: 1px solid var(--gold-light); margin-bottom: 1.35rem; }
     .field-group { margin-bottom: 2rem; }
     .field { margin-bottom: 1rem; }
-    .form-section label {
-      display: block; font-size: 0.68rem; font-weight: 400;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--text-mid); margin-bottom: 0.38rem;
-    }
-    .form-section input, .form-section select, .form-section textarea {
-      width: 100%; background: var(--bg-input);
-      border: 1px solid #D8CCAE; border-radius: 2px;
-      color: var(--text); font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.92rem; font-weight: 400;
-      padding: 0.72rem 0.9rem; outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      -webkit-appearance: none; appearance: none;
-    }
+    .form-section label { display: block; font-size: 0.68rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 0.38rem; }
+    .form-section input, .form-section select, .form-section textarea { width: 100%; background: var(--bg-input); border: 1px solid #D8CCAE; border-radius: 2px; color: var(--text); font-family: Arial, Helvetica, sans-serif; font-size: 0.92rem; font-weight: 400; padding: 0.72rem 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; -webkit-appearance: none; appearance: none; }
     .form-section input::placeholder, .form-section textarea::placeholder { color: #B8C4CC; }
-    .form-section input:focus, .form-section select:focus, .form-section textarea:focus {
-      border-color: var(--gold); background: #FFFDF9;
-      box-shadow: 0 0 0 3px rgba(201,149,42,0.1);
-    }
-    .form-section select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23C9952A' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 0.9rem center;
-      padding-right: 2.5rem; cursor: pointer;
-    }
+    .form-section input:focus, .form-section select:focus, .form-section textarea:focus { border-color: var(--gold); background: #FFFDF9; box-shadow: 0 0 0 3px rgba(201,149,42,0.1); }
+    .form-section select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23C9952A' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; cursor: pointer; }
     .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
     textarea { resize: vertical; min-height: 88px; line-height: 1.55; }
@@ -411,20 +180,10 @@
     .section-divider { height:1px; background:linear-gradient(to right, var(--gold-light), transparent); margin:0.25rem 0 1.75rem; }
     .synced-field input, .synced-field select { background: #EFF4E8; border-color: rgba(47,125,87,.25); }
     .synced-hint { font-size: 0.62rem; color: var(--green); letter-spacing: .04em; margin-top: 2px; }
-    .submit-row {
-      display:flex; align-items:center; justify-content:space-between;
-      gap:1rem; flex-wrap:wrap; margin-top:0.75rem; padding-top:1.25rem;
-      border-top: 1px solid var(--gold-light);
-    }
+    .submit-row { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-top:0.75rem; padding-top:1.25rem; border-top: 1px solid var(--gold-light); }
     .submit-note { font-size: 0.72rem; color: var(--text-muted); line-height: 1.65; }
     .submit-note a { color: var(--gold); text-decoration: none; }
-    button[type="submit"] {
-      background: var(--navy); color: var(--white); border: none; border-radius: 2px;
-      font-family: Arial, Helvetica, sans-serif; font-size: 0.7rem; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      padding: 0.9rem 2.5rem; cursor: pointer;
-      transition: background 0.2s, transform 0.1s; white-space: nowrap;
-    }
+    button[type="submit"] { background: var(--navy); color: var(--white); border: none; border-radius: 2px; font-family: Arial, Helvetica, sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.9rem 2.5rem; cursor: pointer; transition: background 0.2s, transform 0.1s; white-space: nowrap; }
     button[type="submit"]:hover { background: var(--gold); }
     button[type="submit"]:active { transform: scale(0.98); }
     button[type="submit"]:disabled { background: var(--text-muted); cursor: not-allowed; }
@@ -432,43 +191,27 @@
     .success-msg .mark { font-size:1.75rem; color:var(--gold); margin-bottom:0.75rem; }
     .success-msg h3 { font-weight:700; font-size:1.6rem; color:var(--navy); margin-bottom:0.45rem; }
     .success-msg p { font-size:0.83rem; color:var(--text-muted); }
- 
-    footer {
-      background: var(--navy); text-align: center; padding: 1.75rem;
-      font-size: 0.68rem; color: rgba(255,255,255,0.28);
-      letter-spacing: 0.1em; text-transform: uppercase;
-    }
- 
+    footer { background: var(--navy); text-align: center; padding: 1.75rem; font-size: 0.68rem; color: rgba(255,255,255,0.28); letter-spacing: 0.1em; text-transform: uppercase; }
+
     @keyframes fadeDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
     @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
- 
-    @media (max-width: 880px) {
-      .art-layout { grid-template-columns: 1fr; }
-    }
+
+    @media (max-width: 880px) { .art-layout { grid-template-columns: 1fr; } }
     @media (max-width: 640px) {
-      .hero { padding: 3.5rem 1.5rem 2.5rem; }
-      .hero img { width: 100px; }
-      .art-hero { padding: 20px 16px 24px; }
-      .art-page { padding: 16px 14px 28px; }
+      .hero { padding: 3.5rem 1.5rem 2.5rem; } .hero img { width: 100px; }
+      .art-hero { padding: 20px 16px 24px; } .art-page { padding: 16px 14px 28px; }
       .art-input-grid, .art-verdict-row { grid-template-columns: 1fr; }
-      .art-metrics { grid-template-columns: 1fr; }
-      .cta-grid { grid-template-columns: 1fr; }
-      .art-foh { flex-direction: column; }
-      .art-hero h3 { font-size: 22px; }
-      .art-vc .verdict-word { font-size: 28px; }
-      .m-half .m-num { font-size: 21px; }
-      .card { padding: 1.5rem 1.25rem; }
-      .row-2, .row-3 { grid-template-columns: 1fr; }
-      .submit-row { flex-direction: column; align-items: stretch; }
-      button[type="submit"] { text-align: center; }
+      .art-metrics { grid-template-columns: 1fr; } .cta-grid { grid-template-columns: 1fr; }
+      .art-foh { flex-direction: column; } .art-hero h3 { font-size: 22px; }
+      .art-vc .verdict-word { font-size: 28px; } .m-half .m-num { font-size: 21px; }
+      .card { padding: 1.5rem 1.25rem; } .row-2, .row-3 { grid-template-columns: 1fr; }
+      .submit-row { flex-direction: column; align-items: stretch; } button[type="submit"] { text-align: center; }
     }
   </style>
 </head>
 <body>
- 
-<!-- ══════════════════════════════════════
-     HERO
-     ══════════════════════════════════════ -->
+
+<!-- ═══ HERO ═══ -->
 <section class="hero" id="top">
   <img src="Mati_Final_Logo.svg" alt="Mati Insights">
   <h1>Mati Insights</h1>
@@ -477,41 +220,31 @@
   <p class="intro-line">For operators, brokers, landlords, and investors who want the numbers before the commitment.</p>
   <a class="scroll-hint" href="#screen">
     <span>Try the screen</span>
-    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M1 1l6 7 6-7" stroke="#C9952A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l6 7 6-7" stroke="#C9952A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
 </section>
- 
 <div class="rule"></div>
- 
-<!-- ══════════════════════════════════════
-     ARTIFACT INTRO
-     ══════════════════════════════════════ -->
+
+<!-- ═══ ARTIFACT INTRO ═══ -->
 <div class="artifact-intro" id="screen">
   <p class="eyebrow">Quick benchmark screen</p>
   <h2>See what your rent demands</h2>
   <p>Enter your rent, area, average spend, and business profile. The screen shows the trading level this rent implies at a 10% benchmark. Adjust the sliders to test a different scenario — then complete the form below to request a full Tier&nbsp;1 report.</p>
 </div>
- 
-<!-- ══════════════════════════════════════
-     ARTIFACT
-     ══════════════════════════════════════ -->
+
+<!-- ═══ ARTIFACT ═══ -->
 <div class="art-hero">
   <div class="art-hero-inner">
     <div class="art-brand"><span class="art-brand-dot"></span> Mati Insights</div>
     <h3>Does the rent make commercial sense?</h3>
     <p class="art-hero-sub">Four inputs. Live adjustments. A rent benchmark in seconds — Tier&nbsp;1 tests it against costs, capacity, and risk.</p>
-    <div class="art-hero-badge">
-      <span class="art-hero-badge-dot"></span>
-      Screen basis: rent at 10% of net sales
-    </div>
+    <div class="art-hero-badge"><span class="art-hero-badge-dot"></span> Screen basis: rent at 10% of net sales</div>
   </div>
 </div>
- 
+
 <div class="art-page">
   <div class="art-layout">
- 
+
     <!-- LEFT -->
     <div class="art-card">
       <div class="art-card-pad">
@@ -528,16 +261,17 @@
           <div class="art-field">
             <label for="artProfile">Business Profile</label>
             <select id="artProfile">
+              <option value="" disabled selected>Select profile</option>
               <option value="coffee">Coffee Shop</option>
               <option value="fastfood">Fast Food</option>
               <option value="bar">Bar / Nightclub</option>
               <option value="independent">Independent Restaurant</option>
-              <option value="highend" selected>High End Destination</option>
+              <option value="highend">High End Destination</option>
             </select>
           </div>
           <div class="art-field">
             <label id="lbl_rent" for="artRent">Annual Rent (£)</label>
-            <input id="artRent" type="text" inputmode="numeric" placeholder="e.g. 350,000" class="art-num-format" />
+            <input id="artRent" type="text" inputmode="numeric" placeholder="e.g. 350,000" />
           </div>
           <div class="art-field">
             <label for="artArea">Site Area (m²)</label>
@@ -545,149 +279,99 @@
           </div>
           <div class="art-field" style="grid-column:1/-1">
             <label id="lbl_spend" for="artSpend">Avg Spend / Cover (£)</label>
-            <input id="artSpend" type="text" inputmode="numeric" placeholder="e.g. 95" class="art-num-format" />
+            <input id="artSpend" type="text" inputmode="numeric" placeholder="e.g. 95" />
           </div>
         </div>
         <div class="art-basis">Screen basis: annual rent = 10% of required net sales</div>
- 
+
         <div class="art-sep"></div>
- 
+
         <div class="art-section-label" style="color:var(--softer)">Adjust the scenario</div>
         <div class="art-slider-wrap">
-          <div class="art-slider-head">
-            <span class="art-slider-label">Rent</span>
-            <span class="art-slider-val" id="rentBadge">0%</span>
-          </div>
+          <div class="art-slider-head"><span class="art-slider-label">Rent</span><span class="art-slider-val" id="rentBadge">0%</span></div>
           <input id="rentSlider" type="range" min="-20" max="20" step="1" value="0" />
         </div>
         <div class="art-slider-wrap">
-          <div class="art-slider-head">
-            <span class="art-slider-label">Average spend</span>
-            <span class="art-slider-val" id="spendBadge">0%</span>
-          </div>
+          <div class="art-slider-head"><span class="art-slider-label">Average spend</span><span class="art-slider-val" id="spendBadge">0%</span></div>
           <input id="spendSlider" type="range" min="-20" max="20" step="1" value="0" />
         </div>
         <div class="art-slider-wrap">
-          <div class="art-slider-head">
-            <span class="art-slider-label">Site area</span>
-            <span class="art-slider-val" id="areaBadge">0%</span>
-          </div>
+          <div class="art-slider-head"><span class="art-slider-label">Site area</span><span class="art-slider-val" id="areaBadge">0%</span></div>
           <input id="areaSlider" type="range" min="-20" max="20" step="1" value="0" />
         </div>
- 
+
         <div class="art-sep"></div>
- 
         <button class="art-cta-btn" id="scrollToForm">Complete your Tier 1 request ↓</button>
       </div>
     </div>
- 
+
     <!-- RIGHT -->
     <div class="art-right">
- 
-      <div class="art-verdict-row">
-        <div class="art-vc v-viable" id="beforeCard">
-          <div class="vc-tag">Base case</div>
-          <div class="verdict-word" id="beforeVerdict">Viable</div>
-          <div class="verdict-sub">trade position</div>
-          <div class="vc-chips">
-            <span class="vc-chip" id="beforeChip1">FOH 55%</span>
-            <span class="vc-chip" id="beforeChip2">Revenue density</span>
-          </div>
-          <div class="verdict-nudge" id="beforeNudge">Tier 1 tests this against real operating costs and capacity.</div>
-        </div>
-        <div class="art-vc after v-viable" id="afterCard">
-          <div class="vc-tag">Adjusted</div>
-          <div class="verdict-word" id="afterVerdict">Viable</div>
-          <div class="verdict-sub">trade position</div>
-          <div class="vc-chips">
-            <span class="vc-chip" id="afterChip1">FOH 55%</span>
-            <span class="vc-chip" id="afterChip2">Revenue density</span>
-          </div>
-          <div class="verdict-nudge" id="afterNudge">Tier 1 tests this against real operating costs and capacity.</div>
-        </div>
+      <!-- Empty state — shown until inputs are filled -->
+      <div class="art-empty" id="emptyState">
+        <strong>Enter your figures to see the benchmark</strong>
+        Fill in rent, area, average spend, and business profile on the left. The screen updates live.
       </div>
- 
-      <div class="art-metrics">
-        <div class="m-pair">
-          <div class="m-half before">
-            <div class="m-tag">Base</div>
-            <div class="m-num" id="beforeRevenue">£3,500,000</div>
-            <div class="m-label">Required revenue</div>
+
+      <!-- Results — hidden until inputs are filled -->
+      <div id="resultsPanel" style="display:none;">
+        <div class="art-verdict-row">
+          <div class="art-vc v-viable" id="beforeCard">
+            <div class="vc-tag">Base case</div>
+            <div class="verdict-word" id="beforeVerdict">—</div>
+            <div class="verdict-sub">trade position</div>
+            <div class="vc-chips"><span class="vc-chip" id="beforeChip1">—</span><span class="vc-chip" id="beforeChip2">—</span></div>
+            <div class="verdict-nudge" id="beforeNudge"></div>
           </div>
-          <div class="m-half after-half">
-            <div class="m-tag">Adjusted</div>
-            <div class="m-num"><span id="afterRevenue">£3,500,000</span><span class="m-dir" id="revDir"></span></div>
-            <div class="m-label">Required revenue</div>
-          </div>
-        </div>
-        <div class="m-pair">
-          <div class="m-half before">
-            <div class="m-tag">Base</div>
-            <div class="m-num" id="beforeCovers">101</div>
-            <div class="m-label">Covers / day needed</div>
-          </div>
-          <div class="m-half after-half">
-            <div class="m-tag">Adjusted</div>
-            <div class="m-num"><span id="afterCovers">101</span><span class="m-dir" id="covDir"></span></div>
-            <div class="m-label">Covers / day needed</div>
+          <div class="art-vc after v-viable" id="afterCard">
+            <div class="vc-tag">Adjusted</div>
+            <div class="verdict-word" id="afterVerdict">—</div>
+            <div class="verdict-sub">trade position</div>
+            <div class="vc-chips"><span class="vc-chip" id="afterChip1">—</span><span class="vc-chip" id="afterChip2">—</span></div>
+            <div class="verdict-nudge" id="afterNudge"></div>
           </div>
         </div>
-        <div class="m-pair">
-          <div class="m-half before">
-            <div class="m-tag">Base</div>
-            <div class="m-num" id="beforeTurns">—</div>
-            <div class="m-label">Seat turns required</div>
+
+        <div class="art-metrics">
+          <div class="m-pair">
+            <div class="m-half before"><div class="m-tag">Base</div><div class="m-num" id="beforeRevenue">—</div><div class="m-label">Required revenue</div></div>
+            <div class="m-half after-half"><div class="m-tag">Adjusted</div><div class="m-num"><span id="afterRevenue">—</span><span class="m-dir" id="revDir"></span></div><div class="m-label">Required revenue</div></div>
           </div>
-          <div class="m-half after-half">
-            <div class="m-tag">Adjusted</div>
-            <div class="m-num"><span id="afterTurns">—</span><span class="m-dir" id="turnDir"></span></div>
-            <div class="m-label">Seat turns required</div>
+          <div class="m-pair">
+            <div class="m-half before"><div class="m-tag">Base</div><div class="m-num" id="beforeCovers">—</div><div class="m-label">Covers / day needed</div></div>
+            <div class="m-half after-half"><div class="m-tag">Adjusted</div><div class="m-num"><span id="afterCovers">—</span><span class="m-dir" id="covDir"></span></div><div class="m-label">Covers / day needed</div></div>
           </div>
-        </div>
-      </div>
-      <div class="art-screen-tag">Benchmark screen only — Tier 1 replaces these with tested operating figures</div>
- 
-      <div class="art-foh">
-        <div class="art-foh-item">
-          <div class="art-foh-tag">Net FOH area</div>
-          <div class="art-foh-row">
-            <span class="art-foh-num" id="beforeFoh">358 m²</span>
-            <span class="art-foh-delta neutral" id="afterFohDelta"></span>
+          <div class="m-pair">
+            <div class="m-half before"><div class="m-tag">Base</div><div class="m-num" id="beforeTurns">—</div><div class="m-label">Seat turns required</div></div>
+            <div class="m-half after-half"><div class="m-tag">Adjusted</div><div class="m-num"><span id="afterTurns">—</span><span class="m-dir" id="turnDir"></span></div><div class="m-label">Seat turns required</div></div>
           </div>
         </div>
-        <div class="art-foh-item">
-          <div class="art-foh-tag">Indicative seating</div>
-          <div class="art-foh-row">
-            <span class="art-foh-num" id="beforeSeats">—</span>
-            <span class="art-foh-delta neutral" id="afterSeatsDelta"></span>
+        <div class="art-screen-tag">Benchmark screen only — Tier 1 replaces these with tested operating figures</div>
+
+        <div class="art-foh">
+          <div class="art-foh-item"><div class="art-foh-tag">Net FOH area</div><div class="art-foh-row"><span class="art-foh-num" id="beforeFoh">—</span><span class="art-foh-delta neutral" id="afterFohDelta"></span></div></div>
+          <div class="art-foh-item"><div class="art-foh-tag">Indicative seating</div><div class="art-foh-row"><span class="art-foh-num" id="beforeSeats">—</span><span class="art-foh-delta neutral" id="afterSeatsDelta"></span></div><div class="art-foh-note">FOH benchmark — refined in Tier 1</div></div>
+        </div>
+
+        <div class="art-cta-block">
+          <div class="cta-eyebrow">This is a benchmark screen</div>
+          <h4>Tier 1 expands this into a full commercial picture — so you can make a real decision.</h4>
+          <p>This screen shows the trading level this rent implies. Tier 1 pressure-tests it with real operating economics.</p>
+          <div class="cta-grid">
+            <span class="cta-item">Capacity model</span><span class="cta-item">Full P&L</span>
+            <span class="cta-item">Break-even analysis</span><span class="cta-item">Scenario testing</span>
+            <span class="cta-item">Labour &amp; cost structure</span><span class="cta-item">Risk &amp; investment score</span>
           </div>
-          <div class="art-foh-note">FOH benchmark — refined in Tier 1</div>
+          <div class="cta-divider"></div>
+          <div class="cta-tier2"><strong>Tier 2</strong> goes further — monthly P&L, seasonality, 5-year projections, investment returns, and quantified improvement levers.</div>
         </div>
-      </div>
- 
-      <div class="art-cta-block">
-        <div class="cta-eyebrow">This is a benchmark screen</div>
-        <h4>Tier 1 expands this into a full commercial picture — so you can make a real decision.</h4>
-        <p>This screen shows the trading level this rent implies. Tier 1 pressure-tests it with real operating economics.</p>
-        <div class="cta-grid">
-          <span class="cta-item">Capacity model</span>
-          <span class="cta-item">Full P&L</span>
-          <span class="cta-item">Break-even analysis</span>
-          <span class="cta-item">Scenario testing</span>
-          <span class="cta-item">Labour &amp; cost structure</span>
-          <span class="cta-item">Risk &amp; investment score</span>
-        </div>
-        <div class="cta-divider"></div>
-        <div class="cta-tier2"><strong>Tier 2</strong> goes further — monthly P&L, seasonality, 5-year projections, investment returns, and quantified improvement levers.</div>
       </div>
     </div>
- 
+
   </div>
 </div>
- 
-<!-- ══════════════════════════════════════
-     TIER 1 FORM
-     ══════════════════════════════════════ -->
+
+<!-- ═══ TIER 1 FORM ═══ -->
 <section class="form-section" id="enquiry">
   <div class="form-inner">
     <div class="form-header">
@@ -697,7 +381,6 @@
     </div>
     <div class="card">
       <form id="enquiry-form">
- 
         <div class="field-group">
           <div class="section-label">A. Client Details</div>
           <div class="row-2">
@@ -713,7 +396,7 @@
             <div class="field"><label for="city">City</label><select id="city" name="city" required><option value="" disabled selected>Select city</option><option>London</option><option>Lisbon</option><option>Athens</option><option>Mykonos</option><option>Madrid</option><option>Paris</option></select></div>
           </div>
           <div class="row-2">
-            <div class="field synced-field"><label for="concept">Concept / Model</label><select id="concept" name="concept" required><option value="" disabled>Select model</option><option value="Coffee Shop">Coffee Shop</option><option value="Fast Food">Fast Food</option><option value="Bar / Nightclub">Bar / Nightclub</option><option value="Independent Restaurant">Independent Restaurant</option><option value="High End Destination" selected>High End Destination</option></select><div class="synced-hint">Synced from screen</div></div>
+            <div class="field synced-field"><label for="concept">Concept / Model</label><select id="concept" name="concept" required><option value="" disabled>Select model</option><option value="Coffee Shop">Coffee Shop</option><option value="Fast Food">Fast Food</option><option value="Bar / Nightclub">Bar / Nightclub</option><option value="Independent Restaurant">Independent Restaurant</option><option value="High End Destination">High End Destination</option></select><div class="synced-hint">Synced from screen</div></div>
             <div class="field"><label for="project_type">Project Type</label><select id="project_type" name="project_type" required><option value="" disabled selected>Select type</option><option>Brand New Site</option><option>Local Growth</option><option>Group Rollout</option><option>Buy &amp; Rebrand</option><option>Managed Contract</option></select></div>
           </div>
           <div class="row-2">
@@ -721,9 +404,9 @@
             <div class="field"><label for="building_state">Building State</label><select id="building_state" name="building_state" required><option value="" disabled selected>Select state</option><option>New Build</option><option>Refurbished</option><option>Takeover</option><option>Second Occupancy</option><option>Heritage</option></select></div>
           </div>
         </div>
- 
+
         <div class="section-divider"></div>
- 
+
         <div class="field-group">
           <div class="section-label">B. Unit Specifications</div>
           <div class="row-2">
@@ -732,9 +415,9 @@
           </div>
           <div class="field synced-field"><label for="avg_spend" id="lbl_form_spend">Average Spend per Cover</label><input type="text" inputmode="numeric" id="avg_spend" name="avg_spend" placeholder="e.g. 85" class="num-format" required><div class="synced-hint">Synced from screen</div></div>
         </div>
- 
+
         <div class="section-divider"></div>
- 
+
         <div class="field-group">
           <div class="section-label">C. Investment Assumptions</div>
           <div class="row-2">
@@ -750,24 +433,24 @@
             <div class="field"><label for="interest_rate">Interest Rate</label><div class="input-suffix"><input type="text" inputmode="decimal" id="interest_rate" name="interest_rate" placeholder="e.g. 5.0" class="pct-format"><span class="suffix">%</span></div></div>
           </div>
         </div>
- 
+
         <div class="section-divider"></div>
- 
+
         <div class="field-group" style="margin-bottom:0.5rem">
           <div class="section-label">Additional Notes</div>
           <div class="field"><textarea id="notes" name="notes" placeholder="Any additional context about the project, timeline, or specific requirements…"></textarea></div>
         </div>
- 
+
         <input type="hidden" id="h_rent_adj" value="0">
         <input type="hidden" id="h_spend_adj" value="0">
         <input type="hidden" id="h_area_adj" value="0">
- 
+
         <div class="submit-row">
           <p class="submit-note">We respond within 1 business day.<br><a href="mailto:hello@matiinsights.com">hello@matiinsights.com</a></p>
           <button type="submit" id="submit-btn">Submit Enquiry</button>
         </div>
       </form>
- 
+
       <div class="success-msg" id="success-msg">
         <div class="mark">✦</div>
         <h3>Enquiry Received</h3>
@@ -776,67 +459,60 @@
     </div>
   </div>
 </section>
- 
+
 <footer>© 2026 Mati Insights · All rights reserved</footer>
- 
+
 <script>
-/* ══════════════════════════════════════
-   ARTIFACT ENGINE
-   ══════════════════════════════════════ */
-const PROFILES = {
+/* ═══ PROFILES ═══ */
+var PROFILES = {
   coffee:      { name:'Coffee Shop',            fohPct:0.65, sqmPerSeat:1.2, thresholds:{ revenuePerFoh:[10000,14000], coversPerFoh:[0.30,0.55], rentPerFoh:[1400,2200] }},
   fastfood:    { name:'Fast Food',              fohPct:0.50, sqmPerSeat:1.0, thresholds:{ revenuePerFoh:[12000,17000], coversPerFoh:[0.40,0.75], rentPerFoh:[1600,2600] }},
   bar:         { name:'Bar / Nightclub',        fohPct:0.70, sqmPerSeat:1.5, thresholds:{ revenuePerFoh:[9000,13000],  coversPerFoh:[0.18,0.35], rentPerFoh:[1300,2100] }},
   independent: { name:'Independent Restaurant', fohPct:0.60, sqmPerSeat:1.5, thresholds:{ revenuePerFoh:[9000,12500],  coversPerFoh:[0.20,0.38], rentPerFoh:[1300,2000] }},
   highend:     { name:'High End Destination',   fohPct:0.55, sqmPerSeat:1.7, thresholds:{ revenuePerFoh:[8000,11000],  coversPerFoh:[0.12,0.25], rentPerFoh:[1200,1900] }}
 };
- 
-const PROFILE_TO_CONCEPT = {
-  coffee: 'Coffee Shop', fastfood: 'Fast Food', bar: 'Bar / Nightclub',
-  independent: 'Independent Restaurant', highend: 'High End Destination'
-};
- 
-const $ = id => document.getElementById(id);
- 
-function num(v) { const n = Number(String(v).replace(/[^0-9.\-]/g,'')); return Number.isFinite(n) ? n : 0; }
-function safe(a,b) { return b > 0 ? a / b : 0; }
- 
-// Currency-aware formatting
+var PROFILE_TO_CONCEPT = { coffee:'Coffee Shop', fastfood:'Fast Food', bar:'Bar / Nightclub', independent:'Independent Restaurant', highend:'High End Destination' };
+
+var $ = function(id) { return document.getElementById(id); };
+
+/* ═══ UTILITIES ═══ */
+function num(v) {
+  var n = Number(String(v).replace(/[^0-9.\-]/g, ''));
+  return Number.isFinite(n) ? n : 0;
+}
+function safe(a, b) { return b > 0 ? a / b : 0; }
 function getCur() { return $('artCurrency').value; }
- 
-function fmtCur(v) {
-  const c = getCur();
-  const n = Math.round(v || 0);
-  const formatted = n.toLocaleString('en-GB');
-  return c + formatted;
+function fmtCur(v) { return getCur() + Math.round(v || 0).toLocaleString('en-GB'); }
+function dec(v, d) { return Number(v || 0).toLocaleString('en-GB', { minimumFractionDigits: d, maximumFractionDigits: d }); }
+
+/* Thousand separator for artifact inputs */
+function formatArtInput(el) {
+  var raw = el.value.replace(/[^0-9]/g, '');
+  el.value = raw === '' ? '' : parseInt(raw, 10).toLocaleString('en-GB');
 }
- 
-function dec(v, d) {
-  d = d || 1;
-  return Number(v || 0).toLocaleString('en-GB', { minimumFractionDigits: d, maximumFractionDigits: d });
-}
- 
-function fmtNum(v) {
-  return Math.round(v || 0).toLocaleString('en-GB');
-}
- 
-// Slider badge
+
+$('artRent').addEventListener('input', function() { formatArtInput(this); render(); });
+$('artArea').addEventListener('input', function() { formatArtInput(this); render(); });
+$('artSpend').addEventListener('input', function() { formatArtInput(this); render(); });
+
+/* Slider badge */
 function badge(node, value) {
   var n = Number(value);
   node.textContent = (n > 0 ? '+' : '') + n + '%';
   node.className = 'art-slider-val' + (n > 0 ? ' pos' : n < 0 ? ' neg' : '');
 }
- 
-// Classify
+
+/* Classify */
 function classify(value, thresholds) {
   if (value <= thresholds[0]) return 0;
   if (value <= thresholds[1]) return 1;
   return 2;
 }
- 
-// Calc
+
+/* Calc */
 function calc(rent, area, spend, key) {
   var p = PROFILES[key];
+  if (!p) return null;
   var netFoh = area * p.fohPct;
   var estSeats = Math.round(netFoh / p.sqmPerSeat);
   var reqRevenue = rent / 0.10;
@@ -845,28 +521,24 @@ function calc(rent, area, spend, key) {
   var rentPerFoh = safe(rent, netFoh);
   var revPerFoh = safe(reqRevenue, netFoh);
   var coversPerFoh = safe(reqCovers, netFoh);
- 
   var s1 = classify(revPerFoh, p.thresholds.revenuePerFoh);
   var s2 = classify(coversPerFoh, p.thresholds.coversPerFoh);
   var s3 = classify(rentPerFoh, p.thresholds.rentPerFoh);
   var total = s1 * 0.40 + s2 * 0.35 + s3 * 0.25;
- 
   var verdict = 'Strong', vClass = 'v-strong';
   if (total > 1.20) { verdict = 'Borderline'; vClass = 'v-borderline'; }
   else if (total > 0.45) { verdict = 'Viable'; vClass = 'v-viable'; }
- 
   var drivers = { 'Revenue density': s1, 'Cover intensity': s2, 'Rent burden': s3 };
-  var primary = Object.keys(drivers).sort(function(a,b) { return drivers[b]-drivers[a]; })[0];
- 
+  var primary = Object.keys(drivers).sort(function(a,b){ return drivers[b]-drivers[a]; })[0];
   return { p:p, netFoh:netFoh, estSeats:estSeats, reqRevenue:reqRevenue, reqCovers:reqCovers, seatTurns:seatTurns, verdict:verdict, vClass:vClass, primary:primary };
 }
- 
+
 function verdictNudge(v) {
   if (v === 'Strong') return 'Tier 1 confirms the detail — costs, capacity, break-even, and risk.';
   if (v === 'Viable') return 'Tier 1 tests this against real operating costs and capacity.';
   return 'Tier 1 is essential — the operating picture will determine whether this works.';
 }
- 
+
 function paintVerdict(card, vEl, c1, c2, nudge, data, isAfter) {
   card.className = 'art-vc ' + data.vClass + (isAfter ? ' after' : '');
   vEl.textContent = data.verdict;
@@ -874,108 +546,112 @@ function paintVerdict(card, vEl, c1, c2, nudge, data, isAfter) {
   c2.textContent = data.primary;
   nudge.textContent = verdictNudge(data.verdict);
 }
- 
+
 function setDir(el, adj, base) {
   if (adj < base - 0.5) { el.textContent = ' ↓'; el.className = 'm-dir easier'; }
   else if (adj > base + 0.5) { el.textContent = ' ↑'; el.className = 'm-dir harder'; }
   else { el.textContent = ''; el.className = 'm-dir'; }
 }
- 
-// Currency label updater
+
 function updateCurrencyLabels() {
   var c = getCur();
   $('lbl_rent').textContent = 'Annual Rent (' + c + ')';
   $('lbl_spend').textContent = 'Avg Spend / Cover (' + c + ')';
-  // Form labels
   $('lbl_form_rent').textContent = 'Annual Rent (' + c + ')';
   $('lbl_form_spend').textContent = 'Average Spend per Cover (' + c + ')';
   $('lbl_form_capex').textContent = 'Total Capex (' + c + ')';
   $('lbl_form_fin').textContent = 'Financing Amount (' + c + ')';
 }
- 
-// Sync artifact → form
+
 function syncToForm() {
   var c = getCur();
   var rent = num($('artRent').value);
   var area = num($('artArea').value);
   var spend = num($('artSpend').value);
   var profileKey = $('artProfile').value;
- 
-  // Currency
   $('currency').value = c;
-  // Concept
-  $('concept').value = PROFILE_TO_CONCEPT[profileKey];
-  // Rent, area, spend — formatted
+  if (PROFILE_TO_CONCEPT[profileKey]) $('concept').value = PROFILE_TO_CONCEPT[profileKey];
   $('rent').value = rent > 0 ? Math.round(rent).toLocaleString('en-GB') : '';
   $('area').value = area > 0 ? Math.round(area).toLocaleString('en-GB') : '';
   $('avg_spend').value = spend > 0 ? Math.round(spend).toLocaleString('en-GB') : '';
 }
- 
-// Master render
+
+/* ═══ MASTER RENDER ═══ */
 function render() {
   var baseRent = num($('artRent').value);
-  var baseArea = Math.max(num($('artArea').value), 1);
-  var baseSpend = Math.max(num($('artSpend').value), 0.01);
+  var baseArea = num($('artArea').value);
+  var baseSpend = num($('artSpend').value);
   var key = $('artProfile').value;
- 
+
+  // Check if all inputs are filled
+  var hasInputs = baseRent > 0 && baseArea > 0 && baseSpend > 0 && PROFILES[key];
+
+  $('emptyState').style.display = hasInputs ? 'none' : 'block';
+  $('resultsPanel').style.display = hasInputs ? '' : 'none';
+
+  if (!hasInputs) {
+    updateCurrencyLabels();
+    syncToForm();
+    return;
+  }
+
+  baseArea = Math.max(baseArea, 1);
+  baseSpend = Math.max(baseSpend, 0.01);
+
   var rA = num($('rentSlider').value) / 100;
   var sA = num($('spendSlider').value) / 100;
   var aA = num($('areaSlider').value) / 100;
- 
+
   badge($('rentBadge'), $('rentSlider').value);
   badge($('spendBadge'), $('spendSlider').value);
   badge($('areaBadge'), $('areaSlider').value);
- 
+
   var b = calc(baseRent, baseArea, baseSpend, key);
   var a = calc(baseRent * (1 + rA), baseArea * (1 + aA), baseSpend * (1 + sA), key);
- 
+
+  if (!b || !a) return;
+
   paintVerdict($('beforeCard'), $('beforeVerdict'), $('beforeChip1'), $('beforeChip2'), $('beforeNudge'), b, false);
   paintVerdict($('afterCard'), $('afterVerdict'), $('afterChip1'), $('afterChip2'), $('afterNudge'), a, true);
- 
+
   $('beforeRevenue').textContent = fmtCur(b.reqRevenue);
   $('afterRevenue').textContent = fmtCur(a.reqRevenue);
   $('beforeCovers').textContent = Math.round(b.reqCovers);
   $('afterCovers').textContent = Math.round(a.reqCovers);
   $('beforeTurns').textContent = dec(b.seatTurns, 1) + '×';
   $('afterTurns').textContent = dec(a.seatTurns, 1) + '×';
- 
+
   setDir($('revDir'), a.reqRevenue, b.reqRevenue);
   setDir($('covDir'), a.reqCovers, b.reqCovers);
   setDir($('turnDir'), a.seatTurns, b.seatTurns);
- 
+
   $('beforeFoh').textContent = Math.round(b.netFoh) + ' m²';
   $('beforeSeats').textContent = b.estSeats;
- 
+
   var fohD = Math.round(a.netFoh) - Math.round(b.netFoh);
   var seatD = a.estSeats - b.estSeats;
   $('afterFohDelta').textContent = fohD !== 0 ? '→ ' + Math.round(a.netFoh) + ' m²' : '';
   $('afterSeatsDelta').textContent = seatD !== 0 ? '→ ' + a.estSeats : '';
- 
+
   updateCurrencyLabels();
   syncToForm();
- 
-  // Lock slider values into hidden form fields
+
   $('h_rent_adj').value = $('rentSlider').value;
   $('h_spend_adj').value = $('spendSlider').value;
   $('h_area_adj').value = $('areaSlider').value;
 }
- 
-// Bind artifact events
-[$('artRent'), $('artArea'), $('artSpend'), $('artProfile'), $('artCurrency'),
- $('rentSlider'), $('spendSlider'), $('areaSlider')].forEach(function(n) {
+
+/* ═══ BIND EVENTS ═══ */
+[$('artProfile'), $('artCurrency'), $('rentSlider'), $('spendSlider'), $('areaSlider')].forEach(function(n) {
   n.addEventListener('input', render);
   n.addEventListener('change', render);
 });
- 
-// Scroll CTA
+
 $('scrollToForm').addEventListener('click', function() {
   document.getElementById('enquiry').scrollIntoView({ behavior: 'smooth' });
 });
- 
-/* ══════════════════════════════════════
-   FORM LOGIC
-   ══════════════════════════════════════ */
-// Number formatting for form
+
+/* ═══ FORM LOGIC ═══ */
 document.querySelectorAll('.num-format').forEach(function(input) {
   input.addEventListener('input', function() {
     var raw = this.value.replace(/[^0-9]/g, '');
@@ -990,20 +666,18 @@ document.querySelectorAll('.pct-format').forEach(function(input) {
     this.value = raw;
   });
 });
- 
-// Form submission
+
 var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwBJmiyNDW4hdEHvI5U27utj8RzXiYmkHgUcrjhyo6RnLi7CnvA_x7aFNr7-oWkRfI-sg/exec";
 var form = document.getElementById('enquiry-form');
 var success = document.getElementById('success-msg');
 var btn = document.getElementById('submit-btn');
- 
+
 form.addEventListener('submit', async function(e) {
   e.preventDefault();
   btn.textContent = 'Sending…';
   btn.disabled = true;
- 
+
   var payload = {
-    // Client details
     company:          $('company').value,
     name:             $('name').value,
     email:            $('email').value,
@@ -1014,11 +688,9 @@ form.addEventListener('submit', async function(e) {
     project_type:     $('project_type').value,
     geo_profile:      $('geo_profile').value,
     building_state:   $('building_state').value,
-    // Unit specs
     rent:             $('rent').value,
     area:             $('area').value,
     avg_spend:        $('avg_spend').value,
-    // Investment
     capex:            $('capex').value,
     financing_amount: $('financing_amount').value,
     financing_term:   $('financing_term').value,
@@ -1026,14 +698,11 @@ form.addEventListener('submit', async function(e) {
     lease_period:     $('lease_period').value,
     interest_rate:    $('interest_rate').value,
     notes:            $('notes').value,
-    // Artifact adjustments — read from hidden form fields
     rent_adj_pct:     $('h_rent_adj').value,
     spend_adj_pct:    $('h_spend_adj').value,
     area_adj_pct:     $('h_area_adj').value
   };
- 
-  console.log('MATI PAYLOAD:', JSON.stringify(payload));
- 
+
   try {
     await fetch(SCRIPT_URL, {
       method: 'POST',
@@ -1049,16 +718,9 @@ form.addEventListener('submit', async function(e) {
     alert('Something went wrong. Please email us at hello@matiinsights.com');
   }
 });
- 
-// Format artifact number inputs with thousand separators
-document.querySelectorAll('.art-num-format').forEach(function(input) {
-  input.addEventListener('input', function() {
-    var raw = this.value.replace(/[^0-9]/g, '');
-    this.value = raw === '' ? '' : parseInt(raw, 10).toLocaleString('en-GB');
-  });
-});
-render();
+
+/* ═══ INIT ═══ */
+updateCurrencyLabels();
 </script>
 </body>
 </html>
- 
