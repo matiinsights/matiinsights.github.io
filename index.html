@@ -365,7 +365,7 @@
       <span class="lgd-ttl">Layers</span>
       <div class="lgd-i"><div class="lgd-s" style="background:#FBF6EC;border-color:#1B3A5C;"></div>Inputs &amp; Libraries</div>
       <div class="lgd-i"><div class="lgd-s" style="background:#1B3A5C;border-color:#1B3A5C;"></div>Core Engine Hub</div>
-      <div class="lgd-i"><div class="lgd-s" style="background:#fff;border-color:#1B3A5C;border-width:2px;"></div>Financial Engines</div>
+      <div class="lgd-i"><div class="lgd-s" style="background:#fff;border-color:#1B3A5C;border-width:2px;"></div>Operating &amp; Investment Engines</div>
       <div class="lgd-i"><div class="lgd-s" style="background:#C9952A;border-color:#A07820;"></div>Scenario &amp; Risk</div>
       <div class="lgd-i"><div class="lgd-s" style="background:#0D7377;border-color:#085558;"></div>Narrative &amp; Executive</div>
       <div class="lgd-i"><div class="lgd-s" style="background:#FBF6EC;border-color:#1B3A5C;border-width:2.5px;"></div>Final Outputs</div>
@@ -376,13 +376,15 @@
   <div class="diag-below">
     <div class="diag-below-inner">
       <ul class="diag-list">
-        <li><strong>Inputs &amp; Benchmarks</strong> — your data and market references</li>
-        <li><strong>Fundamentals Engine</strong> — builds revenue, costs, payroll, and break-even</li>
-        <li><strong>Financial Engines</strong> — develops P&amp;L, returns, and capital recovery</li>
-        <li><strong>Scenario &amp; Risk</strong> — evaluates performance under different conditions and downside cases</li>
-        <li><strong>Operational &amp; Investment Views</strong> — reads the project from both sides</li>
-        <li><strong>Decision Layer</strong> — combines both into one conclusion</li>
-        <li><strong>Narrative &amp; Outputs</strong> — produces Tier 1 and Tier 2 reports</li>
+        <li><strong>Inputs &amp; Benchmarks</strong> — your data, city benchmarks, and commitment thresholds</li>
+        <li><strong>Spatial &amp; Capacity Intelligence</strong> — derives what the space can realistically do</li>
+        <li><strong>Operating Economics Engine</strong> — builds P&amp;L, payroll, EBITDA, and break-even</li>
+        <li><strong>Investment &amp; Capital Engine</strong> — computes returns, payback, and capex structure</li>
+        <li><strong>Lease &amp; Commitment Screening</strong> — runs factor gates before any commitment is signed</li>
+        <li><strong>Scenario &amp; Stress Testing</strong> — 9 scenarios and 1,000-run Monte Carlo simulation</li>
+        <li><strong>Operational &amp; Investment Perspectives</strong> — reads the project from both sides independently</li>
+        <li><strong>Dual-Perspective Decision Layer</strong> — produces the four-state commitment verdict</li>
+        <li><strong>Executive Narrative &amp; Outputs</strong> — delivers Tier 1, Tier 2, and Delivery Timeline</li>
       </ul>
       <p class="diag-close">Each step feeds the next. The result is a structured decision before any commitment is made.</p>
     </div>
@@ -610,37 +612,68 @@ enquiryForm.addEventListener('submit', async function(e) {
    DIAGRAM JS — fully preserved
 ═══════════════════════════════════════ */
 const PUB_N=[
-  {id:'pi', label:'Project Inputs',                x:110, y:200, w:152,h:44, layer:'input',
-   cat:'Input Layer',desc:'Captures the project-specific assumptions entered for the site and concept.'},
-  {id:'br', label:'Benchmarks & Rules',            x:110, y:330, w:156,h:44, layer:'library',
-   cat:'Rule Libraries',desc:'Applies benchmark and rule libraries that turn raw inputs into a workable commercial case.'},
-  {id:'fe', label:'Fundamentals Engine',           x:330, y:265, w:162,h:48, layer:'hub',
-   cat:'Core Hub',desc:'Builds the live commercial case from capacity, revenue, cost, payroll, rent, and operating assumptions.'},
-  {id:'fin',label:'Financial Engines',             x:530, y:185, w:148,h:44, layer:'engine',
-   cat:'Financial Processing',desc:'Produces the P&L, break-even, investment return, and capital recovery calculations.'},
-  {id:'sr', label:'Scenario & Risk',               x:530, y:345, w:140,h:44, layer:'scenario',
-   cat:'Scenario & Risk Layer',desc:'Stresses the project under downside and uncertainty conditions. It supports the decision but does not replace it.'},
-  {id:'op', label:'Operational Perspective',       x:740, y:210, w:178,h:44, layer:'engine',
-   cat:'Operational Perspective',desc:'Tests whether the business can sustain itself through sales, margin, cost structure, break-even, and demand.'},
-  {id:'ip', label:'Investment Perspective',        x:740, y:340, w:170,h:44, layer:'engine',
-   cat:'Investment Perspective',desc:'Tests whether the capital is justified through capex, payback, returns, and downside recovery.'},
-  {id:'dl2',label:'Two-Perspective Decision Layer',x:960, y:275, w:210,h:44, layer:'scenario',
-   cat:'Decision Layer',desc:'Compares the operational and investment results side by side and identifies alignment or conflict.'},
-  {id:'nv', label:'Narrative & Visual Layer',      x:1180,y:185, w:178,h:44, layer:'narrative',
-   cat:'Narrative Layer',desc:'Translates engine outputs into a structured commercial verdict and visual summary.'},
-  {id:'t1', label:'Tier 1 Brief',                  x:1390,y:145, w:128,h:44, layer:'output',
-   cat:'Final Output',desc:'Pre-commitment commercial screen — key figures, verdict, and risk flags in one document.'},
-  {id:'t2', label:'Tier 2 Report',                 x:1390,y:362, w:128,h:44, layer:'output',
-   cat:'Final Output',desc:'Full screen report — financial model, risk analysis, investment returns, and decision basis.'},
+  // Column 1 — Inputs
+  {id:'pi', label:'Project Inputs',                  x:100, y:198, w:148,h:44, layer:'input',
+   cat:'Project Inputs',
+   desc:'City, concept, site area, rent, capex, and financing terms. The starting point for every screen.'},
+  {id:'br', label:'Benchmarks & Rules',              x:100, y:348, w:152,h:44, layer:'library',
+   cat:'Benchmark Library',
+   desc:'City-specific and concept-specific benchmark lattice — FOH ratios, spend ranges, cost structures, turnover rates, and commitment thresholds. Reviewed Q1 and Q3.'},
+  // Column 2 — Hub
+  {id:'sc', label:'Spatial & Capacity Intelligence', x:322, y:273, w:196,h:48, layer:'hub',
+   cat:'Core Hub',
+   desc:'Derives net FOH area, seat count, table mix, dwell time, turnover rate, and daily cover capacity from site inputs and spatial benchmarks.'},
+  // Column 3 — Engines
+  {id:'oe', label:'Operating Economics Engine',      x:538, y:188, w:192,h:44, layer:'engine',
+   cat:'Operating Engine',
+   desc:'Builds the full P&L — revenue by daypart, cost of sales, payroll, operating expenses, rent and establishment, EBITDA, and sales density scored against city benchmarks.'},
+  {id:'ic', label:'Investment & Capital Engine',     x:538, y:358, w:186,h:44, layer:'engine',
+   cat:'Investment Engine',
+   desc:'Computes capex structure, financing, equity invested, ROI, IRR, equity IRR, and payback period against the lease term and benchmark thresholds.'},
+  // Column 4 — Screening & Stress
+  {id:'lc', label:'Lease & Commitment Screening',   x:752, y:188, w:196,h:44, layer:'scenario',
+   cat:'Commitment Screening',
+   desc:'Runs 8 independently assessed factor gates — occupancy cost, payback vs lease term, break-even headroom, capex exposure, rent escalation, and exit liability. Each gate must clear before commitment is supported.'},
+  {id:'ss', label:'Scenario & Stress Testing',       x:752, y:358, w:178,h:44, layer:'scenario',
+   cat:'Stress Testing',
+   desc:'Runs the 9-scenario sensitivity grid and 1,000-scenario Monte Carlo simulation. Produces probability of loss, downside range, and stress outcome distribution. Separates deterministic risk from stochastic uncertainty.'},
+  // Column 5 — Perspectives
+  {id:'op', label:'Operational Perspective',         x:963, y:188, w:175,h:44, layer:'engine',
+   cat:'Operational Perspective',
+   desc:'Reads the business case — EBITDA margin, break-even headroom, sales density, payroll pressure, and cost structure scored against operational benchmarks.'},
+  {id:'ip', label:'Investment Perspective',          x:963, y:358, w:165,h:44, layer:'engine',
+   cat:'Investment Perspective',
+   desc:'Reads the capital case — project IRR, payback period, downside P10 EBITDA, and capital recovery scored against investment benchmarks.'},
+  // Column 6 — Decision
+  {id:'dl', label:'Dual-Perspective Decision Layer', x:1175, y:273, w:210,h:44, layer:'scenario',
+   cat:'Decision Layer',
+   desc:'Compares Operational and Investment Perspective scores side by side. Identifies alignment or conflict. Produces the four-state recommendation: PROCEED, RENEGOTIATE, PROCEED_CONDITIONAL, or WALK_AWAY.'},
+  // Column 7 — Narrative
+  {id:'en', label:'Executive Narrative & Reporting', x:1378, y:188, w:200,h:44, layer:'narrative',
+   cat:'Narrative & Reporting',
+   desc:'Assembles the structured verdict — executive summary, decision block, quantified improvement levers, quarterly P&L, five-year projections, and commitment conditions with exact figures.'},
+  // Column 8 — Outputs
+  {id:'t1', label:'Tier 1 Brief',                   x:1580, y:135, w:128,h:44, layer:'output',
+   cat:'Final Output — Tier 1',
+   desc:'Commercial screening summary — capacity model, P&L, break-even, scenario grid, dual-perspective scores, and commitment verdict in one document.'},
+  {id:'t2', label:'Tier 2 Full Screen Report',       x:1580, y:285, w:172,h:44, layer:'output',
+   cat:'Final Output — Tier 2',
+   desc:'Complete output — full P&L, factor gate analysis, investment returns, Monte Carlo simulation, five-year projections, quarterly seasonality, improvement levers, and opening timeline.'},
+  {id:'dt', label:'Delivery Timeline',               x:1580, y:420, w:145,h:38, layer:'output',
+   cat:'Delivery Output',
+   desc:'Project-specific Gantt from lease signing to hard open. 13-phase milestone schedule benchmarked by concept and building state. Included in Tier 2.'},
 ];
 const PUB_E=[
-  {f:'pi',t:'fe'},{f:'br',t:'fe'},
-  {f:'fe',t:'fin'},{f:'fe',t:'sr'},
-  {f:'fin',t:'op'},{f:'fin',t:'ip'},
-  {f:'sr',t:'op'},{f:'sr',t:'ip'},
-  {f:'op',t:'dl2'},{f:'ip',t:'dl2'},
-  {f:'dl2',t:'nv'},{f:'sr',t:'nv'},
-  {f:'nv',t:'t1'},{f:'nv',t:'t2'},
+  {f:'pi',t:'sc'},{f:'br',t:'sc'},
+  {f:'sc',t:'oe'},{f:'sc',t:'ic'},
+  {f:'oe',t:'lc'},{f:'oe',t:'ss'},
+  {f:'ic',t:'lc'},{f:'ic',t:'ss'},
+  {f:'lc',t:'op'},{f:'ss',t:'op'},
+  {f:'lc',t:'ip'},{f:'ss',t:'ip'},
+  {f:'op',t:'dl'},{f:'ip',t:'dl'},
+  {f:'dl',t:'en'},
+  {f:'en',t:'t1'},{f:'en',t:'t2'},
+  {f:'t2',t:'dt'},
 ];
 const ST={
   input:    {fill:'#FBF6EC',stroke:'#1B3A5C',sw:1.5,tf:'#1B3A5C',rx:8},
